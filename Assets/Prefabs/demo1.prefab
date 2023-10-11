@@ -44,6 +44,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2009301075468195422}
     m_Modifications:
+    - target: {fileID: -4217687083017814437, guid: 109e1251bda57e04e91d33fd4c880f68, type: 3}
+      propertyPath: message
+      value: Im in the leftmost side of the scene
+      objectReference: {fileID: 0}
     - target: {fileID: 1756135168276800699, guid: 109e1251bda57e04e91d33fd4c880f68, type: 3}
       propertyPath: m_Name
       value: npc (1)
@@ -168,6 +172,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2009301075468195422}
     m_Modifications:
+    - target: {fileID: -4217687083017814437, guid: 109e1251bda57e04e91d33fd4c880f68, type: 3}
+      propertyPath: message
+      value: Im in the middle of the scene
+      objectReference: {fileID: 0}
     - target: {fileID: 1756135168276800699, guid: 109e1251bda57e04e91d33fd4c880f68, type: 3}
       propertyPath: m_Name
       value: npc
@@ -292,6 +300,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2009301075468195422}
     m_Modifications:
+    - target: {fileID: -4217687083017814437, guid: 109e1251bda57e04e91d33fd4c880f68, type: 3}
+      propertyPath: message
+      value: Im in the rightmost side of the scene
+      objectReference: {fileID: 0}
     - target: {fileID: 1756135168276800699, guid: 109e1251bda57e04e91d33fd4c880f68, type: 3}
       propertyPath: m_Name
       value: npc (2)
