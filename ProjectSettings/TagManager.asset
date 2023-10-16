@@ -9,6 +9,7 @@ TagManager:
   - Door
   - Interactible
   - Vehicle
+  - Geometry
   layers:
   - Default
   - TransparentFX

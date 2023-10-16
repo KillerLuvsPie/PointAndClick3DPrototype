@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     public void QueueInteraction(GameObject obj, string npcMessage, float interactRadius)
     {
         StopRunningCoroutine(coroutine);
-        print("Coroutine stopped at interaction");
+        //print("Coroutine stopped at interaction");
         coroutine = WalkingToNPC(npcMessage, interactRadius);
         playerAgent.stoppingDistance = interactRadius;
         playerAgent.SetDestination(obj.transform.position);
@@ -39,11 +39,11 @@ public class PlayerController : MonoBehaviour
     private IEnumerator WalkingToNPC(string npcMessage, float interactRadius)
     {
         interactionQueued = true;
-        print("Walk start");
+        //print("Walk start");
         yield return new WaitForEndOfFrame();
         yield return new WaitUntil(() => playerAgent.remainingDistance <= interactRadius);
         interactionQueued = false;
-        print("Walk finish");
+        //print("Walk finish");
         print(npcMessage);
         StartCoroutine(UIManager.Instance.SideMenuSlideIn());
     }
@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
+
+        playerAgent = GetComponent<NavMeshAgent>();
     }
 
     void Update()
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour
                     if(hitInfo.collider.CompareTag("Geometry"))
                     {
                         StopRunningCoroutine(coroutine);
-                        print("Coroutine stopped at geometry click");
+                        //print("Coroutine stopped at geometry click");
                         playerAgent.stoppingDistance = moveStopRadius;
                         playerAgent.SetDestination(hitInfo.point);
                     }
@@ -80,6 +82,8 @@ public class PlayerController : MonoBehaviour
         if(playerAgent.velocity == Vector3.zero)
             mat.color = new Color(0,1,0,1);
         else
-            mat.color = new Color(1,0,0,1);
+        {
+            mat.color = new Color(playerAgent.velocity.magnitude/playerAgent.speed,1,0,1);
+        }
     }
 }

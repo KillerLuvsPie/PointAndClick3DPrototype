@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     {
         while(rectT.anchoredPosition.x > -250)
         {
-            rectT.anchoredPosition += new Vector2(-1,0);
+            rectT.anchoredPosition += new Vector2(-2,0);
             yield return new WaitForEndOfFrame();
         }
     }
@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
     {
         while(rectT.anchoredPosition.x < 250)
         {
-            rectT.anchoredPosition += new Vector2(1,0);
+            rectT.anchoredPosition += new Vector2(2,0);
             yield return new WaitForEndOfFrame();
         }
     }
