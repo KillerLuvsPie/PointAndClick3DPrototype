@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private bool interactionQueued = false;
     public Material mat;
     //FUNCTIONS
+    //FUNCTION USED TO STOP THE INTERACTION COROUTINE - RESET INTERACTION
     private void StopRunningCoroutine(IEnumerator c)
     {
         if(interactionQueued)
@@ -25,18 +26,41 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(c);
         }
     }
-    
-    public void QueueInteraction(GameObject obj, string npcMessage, float interactRadius)
+    //QUEUE A PLAYER INTERACTION
+    public void QueueInteraction(GameObject obj, float interactRadius)
     {
         StopRunningCoroutine(coroutine);
         //print("Coroutine stopped at interaction");
-        coroutine = WalkingToNPC(npcMessage, interactRadius);
+        coroutine = WalkingToObject(obj, interactRadius);
         playerAgent.stoppingDistance = interactRadius;
         playerAgent.SetDestination(obj.transform.position);
         StartCoroutine(coroutine);
     }
+    //CHOOSE ACTION DEPENDING ON INTERACTIBLE OBJECT TAG
+    private void InteractionTypeSelection(GameObject obj)
+    {
+        switch (obj.tag)
+        {
+            case "NPC":             //NPC INTERACTION
+                print(obj.GetComponent<NPCController>().message);
+                break;
+            case "Interactible":    //OBJECT INTERACTION
+                StartCoroutine(UIManager.Instance.SideMenuSlideIn());
+                break;
+            case "Vehicle":         //VEHICLE INTERACTION
+                break;
+            case "Robot":           //ROBOT INTERACTION
+                //PASS THE ACTION BUTTON FUNCTIONS IN SIDE MENU HERE
+                StartCoroutine(UIManager.Instance.SideMenuSlideIn());
+                break;
+            default:                //ERROR INTERACTION
+                print("Interaction could not find the tag: " + obj.tag);
+                break;
+        }
+    }
+
     //COROUTINES
-    private IEnumerator WalkingToNPC(string npcMessage, float interactRadius)
+    private IEnumerator WalkingToObject(GameObject obj, float interactRadius)
     {
         interactionQueued = true;
         //print("Walk start");
@@ -44,9 +68,9 @@ public class PlayerController : MonoBehaviour
         yield return new WaitUntil(() => playerAgent.remainingDistance <= interactRadius);
         interactionQueued = false;
         //print("Walk finish");
-        print(npcMessage);
-        StartCoroutine(UIManager.Instance.SideMenuSlideIn());
+        InteractionTypeSelection(obj);
     }
+
     //ENGINE FUNCTIONS
     void Awake()
     {
@@ -78,7 +102,7 @@ public class PlayerController : MonoBehaviour
                 }
             }  
         }
-        //CHECK IF PLAYER IS MOVING
+        //CHECK IF PLAYER IS MOVING - MOCK ANIMATOR
         if(playerAgent.velocity == Vector3.zero)
             mat.color = new Color(0,1,0,1);
         else
