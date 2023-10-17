@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984069710906612455}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 0.1, z: 10}
+  m_LocalPosition: {x: 0, y: 0, z: 2.5731}
+  m_LocalScale: {x: 75.142, y: 0.75142, z: 75.142}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 984069711338863314}
@@ -159,8 +159,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984069711505024953}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.081, z: -5.54}
-  m_LocalScale: {x: 10, y: 4.5619, z: 0.5}
+  m_LocalPosition: {x: 0, y: 17.337, z: -36.74}
+  m_LocalScale: {x: 75.142, y: 34.27903, z: 3.7571}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 984069711338863314}
@@ -256,8 +256,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984069711804361490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.081, z: -4.4}
-  m_LocalScale: {x: 1, y: 4.5619, z: 1}
+  m_LocalPosition: {x: 0, y: 17.2, z: -30.489}
+  m_LocalScale: {x: 7.5142, y: 34.27903, z: 7.5142}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 984069711338863314}
@@ -447,8 +447,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052886587058369854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.36, y: 0.92, z: -5.242}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -10.71, y: 3.0913, z: -34.602}
+  m_LocalScale: {x: 1.5249642, y: 1.5249642, z: 1.5249642}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7408717238258454572}
@@ -567,8 +567,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4583149c9a268324ca8969a91f9e436a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  message: 
-  interactIndicator: {fileID: 0}
   interactRadius: 2.5
   interactIndicatorAnim: {fileID: 1925198759651351954}
 --- !u!1001 &5335898395416715541
