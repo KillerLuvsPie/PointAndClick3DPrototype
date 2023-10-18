@@ -6,6 +6,8 @@ public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance;
     public List<Transform> cameraAnchors = new List<Transform>();
+    float leftTrigger = 15;
+    float rightTrigger = -15;
     float offset = 15;
     void Awake()
     {
@@ -17,13 +19,13 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        if(PlayerController.Instance.transform.position.x >= 15)
+        if(PlayerController.Instance.transform.position.x >= leftTrigger)
         {
             Camera.main.transform.position = new Vector3(cameraAnchors[0].position.x, cameraAnchors[0].position.y, PlayerController.Instance.transform.position.z + offset);
             Camera.main.transform.rotation = cameraAnchors[0].rotation;
         }
             
-        else if(PlayerController.Instance.transform.position.x <= -15)
+        else if(PlayerController.Instance.transform.position.x <= rightTrigger)
         {
             Camera.main.transform.position = new Vector3(cameraAnchors[4].position.x, cameraAnchors[4].position.y, PlayerController.Instance.transform.position.z + offset);
             Camera.main.transform.rotation = cameraAnchors[4].rotation;

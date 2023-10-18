@@ -45,12 +45,12 @@ public class PlayerController : MonoBehaviour
                 print(obj.GetComponent<NPCController>().message);
                 break;
             case "Interactible":    //OBJECT INTERACTION
-                StartCoroutine(UIManager.Instance.SideMenuSlideIn());
                 break;
             case "Vehicle":         //VEHICLE INTERACTION
                 break;
             case "Robot":           //ROBOT INTERACTION
-                //PASS THE ACTION BUTTON FUNCTIONS IN SIDE MENU HERE
+                //FILL ACTION BUTTONS WITH FUNCTIONS HERE
+                UIManager.Instance.SideMenuReplaceInterface(obj.GetComponent<RobotController>().robotInterface);
                 StartCoroutine(UIManager.Instance.SideMenuSlideIn());
                 break;
             default:                //ERROR INTERACTION
