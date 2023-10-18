@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(c);
         }
     }
-    //QUEUE A PLAYER INTERACTION
+    //QUEUE A PLAYER INTERACTION (STOP CURRENT QUEUED ACTION, SET NAVMESH AGENT PARAMETERS AND THEN RUN COROUTINE)
     public void QueueInteraction(GameObject obj, float interactRadius)
     {
         StopRunningCoroutine(coroutine);
@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //COROUTINES
+    //WAITS FOR PLAYER TO BE IN RANGE OF OBJECT AND THEN INTERACTS WITH SAID OBJECT
     private IEnumerator WalkingToObject(GameObject obj, float interactRadius)
     {
         interactionQueued = true;

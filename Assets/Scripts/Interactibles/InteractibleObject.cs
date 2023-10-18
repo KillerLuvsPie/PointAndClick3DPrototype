@@ -10,18 +10,18 @@ public class InteractibleObject : MonoBehaviour
     
     void OnMouseEnter()
     {
-        //if(!EventSystem.current.IsPointerOverGameObject())
+        if(!EventSystem.current.IsPointerOverGameObject())
             interactIndicatorAnim.SetBool("mouseover", true);
         
     }
     void OnMouseExit()
     {
-        //if(!EventSystem.current.IsPointerOverGameObject())
+        if(!EventSystem.current.IsPointerOverGameObject())
             interactIndicatorAnim.SetBool("mouseover", false);
     }
     void OnMouseDown()
     {
-        //if(!EventSystem.current.IsPointerOverGameObject())
+        if(!EventSystem.current.IsPointerOverGameObject())
             PlayerController.Instance.QueueInteraction(gameObject, interactRadius);
     }
 }
