@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - NPC
+  - Robot
+  - Door
+  - Interactible
+  - Vehicle
+  - Geometry
   layers:
   - Default
   - TransparentFX
