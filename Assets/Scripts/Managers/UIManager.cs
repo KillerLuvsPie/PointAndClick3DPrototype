@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     //SIDE MENU SLIDE IN ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
     public IEnumerator SideMenuSlideIn()
     {
+        PlayerController.Instance.ControlToggle();
         while(rectT.anchoredPosition.x > -250)
         {
             rectT.anchoredPosition += new Vector2(-2,0);
@@ -27,6 +28,7 @@ public class UIManager : MonoBehaviour
     //SIDE MENU SLIDE OUT ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
     public IEnumerator SideMenuSlideOut()
     {
+        PlayerController.Instance.ControlToggle();
         for(int i = 0; i < commandButtons.Length; i++)
         {
             commandButtons[i].interactable = false;

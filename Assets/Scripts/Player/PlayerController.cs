@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
     //COROUTINE
     private IEnumerator coroutine;
     private bool interactionQueued = false;
+    //PLAYER VARIABLES
     public Material mat;
+    public bool isControlActive = true;
     //FUNCTIONS
     //FUNCTION USED TO STOP THE INTERACTION COROUTINE - RESET INTERACTION
     private void StopRunningCoroutine(IEnumerator c)
@@ -29,12 +31,15 @@ public class PlayerController : MonoBehaviour
     //QUEUE A PLAYER INTERACTION (STOP CURRENT QUEUED ACTION, SET NAVMESH AGENT PARAMETERS AND THEN RUN COROUTINE)
     public void QueueInteraction(GameObject obj, float interactRadius)
     {
-        StopRunningCoroutine(coroutine);
-        //print("Coroutine stopped at interaction");
-        coroutine = WalkingToObject(obj, interactRadius);
-        playerAgent.stoppingDistance = interactRadius;
-        playerAgent.SetDestination(obj.transform.position);
-        StartCoroutine(coroutine);
+        if(isControlActive)
+        {
+            StopRunningCoroutine(coroutine);
+            //print("Coroutine stopped at interaction");
+            coroutine = WalkingToObject(obj, interactRadius);
+            playerAgent.stoppingDistance = interactRadius;
+            playerAgent.SetDestination(obj.transform.position);
+            StartCoroutine(coroutine);
+        }
     }
     //CHOOSE ACTION DEPENDING ON INTERACTIBLE OBJECT TAG
     private void InteractionTypeSelection(GameObject obj)
@@ -57,6 +62,12 @@ public class PlayerController : MonoBehaviour
                 print("Interaction could not find the tag: " + obj.tag);
                 break;
         }
+    }
+
+    //ENABLE / DISABLE CONTROLS
+    public void ControlToggle()
+    {
+        isControlActive = !isControlActive;
     }
 
     //COROUTINES
@@ -88,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
         if(!EventSystem.current.IsPointerOverGameObject())
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0) && isControlActive)
             {
                 Ray movePos = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if(Physics.Raycast(movePos, out var hitInfo))
