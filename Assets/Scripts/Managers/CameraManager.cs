@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -9,6 +10,18 @@ public class CameraManager : MonoBehaviour
     float leftTrigger = 15;
     float rightTrigger = -15;
     float offset = 15;
+
+    
+    //UNITY FUNCTIONS
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.CompareTag("CameraCollider"))
+        {
+            CameraCollider camCol = col.GetComponent<CameraCollider>();
+            
+        }
+    }
+    
     void Awake()
     {
         if(Instance != null && Instance != this)

@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 673564311301539739}
   - component: {fileID: 4799851715510748866}
   - component: {fileID: 1395649447376352424}
+  - component: {fileID: 1419875526635002442}
+  - component: {fileID: -8510399583200248954}
   m_Layer: 0
   m_Name: Drone Placeholder
-  m_TagString: Untagged
+  m_TagString: Robot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 5.54, y: 5.04, z: 4.71}
   m_LocalScale: {x: 0.65056, y: 0.13677, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 517585835067843472}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -97,3 +100,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1419875526635002442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564981538238622278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4583149c9a268324ca8969a91f9e436a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactRadius: 2.5
+  interactIndicatorAnim: {fileID: 8412258458007654020}
+--- !u!114 &-8510399583200248954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564981538238622278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac445fd6c006e594cb3a2c5a94cdee8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robot: {fileID: 11400000, guid: 5ea232de6f95b0d43aa2c779d19e51bf, type: 2}
+  robotInterface: {fileID: 0}
+--- !u!1001 &2595512907596509699
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4475201973348336534}
+    m_Modifications:
+    - target: {fileID: 1644935384652747860, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_Name
+      value: clickindicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+--- !u!4 &517585835067843472 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2534339873511641491, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+  m_PrefabInstance: {fileID: 2595512907596509699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8412258458007654020 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5817319500955614343, guid: e2f1cf0588d270a4e9bbde4ed71b8cb0, type: 3}
+  m_PrefabInstance: {fileID: 2595512907596509699}
+  m_PrefabAsset: {fileID: 0}

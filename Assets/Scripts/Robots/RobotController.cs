@@ -6,13 +6,10 @@ using UnityEngine;
 public class RobotController : MonoBehaviour
 {
     public Robot robot;
-    private SpriteRenderer placeholderImage;
     public GameObject robotInterface;
     
     void Start()
     {
-        placeholderImage = GetComponent<SpriteRenderer>();
-        placeholderImage.sprite = robot.placeholderImage;
         robotInterface = robot.robotInterface;
     }
 }
