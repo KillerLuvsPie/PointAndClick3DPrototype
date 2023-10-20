@@ -10,6 +10,7 @@ TagManager:
   - Interactible
   - Vehicle
   - Geometry
+  - CameraCollider
   layers:
   - Default
   - TransparentFX
