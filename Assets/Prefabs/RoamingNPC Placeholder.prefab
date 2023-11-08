@@ -114,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   message: 
   isRoaming: 1
+  queuePosition: 0
 --- !u!195 &-1070638491101197847
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -124,8 +125,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8
-  m_Acceleration: 8
+  m_Speed: 6
+  m_Acceleration: 6
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0.05

@@ -24,7 +24,7 @@ public class ElevatorManager : MonoBehaviour
     //NPC LIST
     public List<NPCController> elevatorQueue = new List<NPCController>();
     //SPAWN TIMER
-    private int waitTimer = 5;
+    private int waitTimer = 10;
 
     //SPAWN FUNCTION
     private void SpawnNPC()

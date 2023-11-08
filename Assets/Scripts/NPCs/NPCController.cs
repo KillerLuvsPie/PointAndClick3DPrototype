@@ -47,6 +47,7 @@ public class NPCController : MonoBehaviour
                 case DataVariables.ElevatorNPCState.Move:
                     yield return new WaitForSeconds(0.25f);
                     yield return new WaitUntil(() => nma.velocity.magnitude <= 0);
+                    nma.speed = 2;
                     while(rotate)
                     {
                         if(transform.rotation.eulerAngles.y > 90 && transform.rotation.eulerAngles.y < 270)
@@ -69,7 +70,6 @@ public class NPCController : MonoBehaviour
                     yield return new WaitForSeconds(1);
                     if(ElevatorManager.Instance.isMoving == false && queuePosition == 0)
                     {
-                        nma.speed = 3;
                         MoveTo(ElevatorManager.Instance.elevatorPosition.position);
                         state = DataVariables.ElevatorNPCState.Enter;
                     }
