@@ -5,5 +5,5 @@ using UnityEngine;
 
 public static class DataVariables
 {
-    public enum ElevatorNPCState {Idle, Spawn, Move, Adjust, Wait, Enter}
+    public enum ElevatorNPCState {Idle, Spawn, Move, Wait, Enter}
 }

@@ -1230,6 +1230,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+--- !u!4 &627599400 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2048669951204462782, guid: c8cac1e513066484184d733876591de4, type: 3}
+  m_PrefabInstance: {fileID: 3043824377593163111}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &630585219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7609145667655734672, guid: cacd076b4e4ce0443b3183507c331739, type: 3}
@@ -2302,9 +2307,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevatorAnim: {fileID: 1975942071}
+  isMoving: 0
+  elevatorPosition: {fileID: 627599400}
   roamingNPC: {fileID: 8513301537186212377, guid: 23251e26b5c8179478d9c6cb638c5458, type: 3}
   actorWrapper: {fileID: 344652727}
   npcWaitPosition: {fileID: 1246566671}
+  npcWaitAdjustment: {x: 1.5, y: 0, z: 0}
   npcWaitOffset: 1.5
   spawnPoints:
   - {fileID: 298515327}
