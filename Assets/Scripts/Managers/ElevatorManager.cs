@@ -15,8 +15,6 @@ public class ElevatorManager : MonoBehaviour
     public Transform elevatorPosition;
     //NPC PREFAB
     public GameObject roamingNPC;
-    //NPC WRAPPER
-    public Transform actorWrapper;
     //POSITiONS
     public Transform npcWaitPosition;
     public float npcWaitOffset =  2f;
@@ -24,13 +22,13 @@ public class ElevatorManager : MonoBehaviour
     //NPC LIST
     public List<NPCController> elevatorQueue = new List<NPCController>();
     //SPAWN TIMER
-    private int waitTimer = 10;
+    private int waitTimer = 5;
 
     //SPAWN FUNCTION
     private void SpawnNPC()
     {
         GameObject npc = Instantiate(roamingNPC, spawnPoints[Random.Range(0,spawnPoints.Count)].position , Quaternion.identity);
-        npc.transform.parent = actorWrapper;
+        npc.transform.parent = GameManager.Instance.actorWrapper;
     }
 
     //ADJUST NPC QUEUE
