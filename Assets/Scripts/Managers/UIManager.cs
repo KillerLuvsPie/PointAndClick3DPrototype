@@ -6,39 +6,18 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    //SINGLETON
     public static UIManager Instance;
+    //CLICK INDICATOR REFERENCES
+    public GameObject clickIndicatorPrefab;
+    public Transform clickIndicators;
+    //SIDE MENU VARIABLES
     public GameObject sideMenu;
-    private RectTransform rectT;
+    private RectTransform sideMenuRectT;
     public Button[] commandButtons;
-    //SIDE MENU SLIDE IN ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
-    public IEnumerator SideMenuSlideIn()
-    {
-        PlayerController.Instance.ControlToggle();
-        while(rectT.anchoredPosition.x > -250)
-        {
-            rectT.anchoredPosition += new Vector2(-2,0);
-            yield return new WaitForEndOfFrame();
-        }
-        GetSideMenuButtons();
-        for(int i = 0; i < commandButtons.Length; i++)
-        {
-            commandButtons[i].interactable = true;
-        }
-    }
-    //SIDE MENU SLIDE OUT ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
-    public IEnumerator SideMenuSlideOut()
-    {
-        PlayerController.Instance.ControlToggle();
-        for(int i = 0; i < commandButtons.Length; i++)
-        {
-            commandButtons[i].interactable = false;
-        }
-        while(rectT.anchoredPosition.x < 250)
-        {
-            rectT.anchoredPosition += new Vector2(2,0);
-            yield return new WaitForEndOfFrame();
-        }
-    }
+
+    //FUNCTIONS
+    
     //CHECK IF SIDE MENU HAS A ROBOT INTERFACE AS A CHILD OBJECT
     public bool SideMenuHasInterface()
     {
@@ -61,6 +40,36 @@ public class UIManager : MonoBehaviour
         commandButtons = robotInterface.GetComponentsInChildren<Button>();
     }
 
+    //COROUTINES
+    //SIDE MENU SLIDE IN ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
+    public IEnumerator SideMenuSlideIn()
+    {
+        PlayerController.Instance.ControlToggle();
+        while(sideMenuRectT.anchoredPosition.x > -250)
+        {
+            sideMenuRectT.anchoredPosition += new Vector2(-2,0);
+            yield return new WaitForEndOfFrame();
+        }
+        GetSideMenuButtons();
+        for(int i = 0; i < commandButtons.Length; i++)
+        {
+            commandButtons[i].interactable = true;
+        }
+    }
+    //SIDE MENU SLIDE OUT ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
+    public IEnumerator SideMenuSlideOut()
+    {
+        PlayerController.Instance.ControlToggle();
+        for(int i = 0; i < commandButtons.Length; i++)
+        {
+            commandButtons[i].interactable = false;
+        }
+        while(sideMenuRectT.anchoredPosition.x < 250)
+        {
+            sideMenuRectT.anchoredPosition += new Vector2(2,0);
+            yield return new WaitForEndOfFrame();
+        }
+    }
     void Awake()
     {
         //SET SINGLETON
@@ -68,6 +77,6 @@ public class UIManager : MonoBehaviour
             Destroy(this);
         else
             Instance = this;
-        rectT = sideMenu.GetComponent<RectTransform>();
+        sideMenuRectT = sideMenu.GetComponent<RectTransform>();
     }
 }
