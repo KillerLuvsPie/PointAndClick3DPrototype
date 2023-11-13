@@ -44,24 +44,28 @@ public class PlayerController : MonoBehaviour
     //CHOOSE ACTION DEPENDING ON INTERACTIBLE OBJECT TAG
     private void InteractionTypeSelection(GameObject obj)
     {
-        switch (obj.tag)
+        if(obj.GetComponent<InteractibleObject>().isActive)
         {
-            case "NPC":             //NPC INTERACTION
-                print(obj.GetComponent<NPCController>().message);
-                break;
-            case "Interactible":    //OBJECT INTERACTION
-                break;
-            case "Vehicle":         //VEHICLE INTERACTION
-                break;
-            case "Robot":           //ROBOT INTERACTION
-                //FILL ACTION BUTTONS WITH FUNCTIONS HERE
-                UIManager.Instance.SideMenuReplaceInterface(obj.GetComponent<RobotController>().robotInterface);
-                StartCoroutine(UIManager.Instance.SideMenuSlideIn());
-                break;
-            default:                //ERROR INTERACTION
-                print("Interaction could not find the tag: " + obj.tag);
-                break;
+            switch (obj.tag)
+            {
+                case "NPC":             //NPC INTERACTION
+                    print(obj.GetComponent<NPCController>().message);
+                    break;
+                case "Interactible":    //OBJECT INTERACTION
+                    break;
+                case "Vehicle":         //VEHICLE INTERACTION
+                    break;
+                case "Robot":           //ROBOT INTERACTION
+                    //FILL ACTION BUTTONS WITH FUNCTIONS HERE
+                    UIManager.Instance.SideMenuReplaceInterface(obj.GetComponent<RobotController>().robotInterface);
+                    StartCoroutine(UIManager.Instance.SideMenuSlideIn(obj.GetComponent<RobotController>()));
+                    break;
+                default:                //ERROR INTERACTION
+                    print("Interaction could not find the tag: " + obj.tag);
+                    break;
+            }   
         }
+        
     }
 
     //ENABLE / DISABLE CONTROLS

@@ -8,6 +8,6 @@ public static class DataVariables
     //ELEVATOR STATE ENUM
     public enum ElevatorNPCState {Idle, Spawn, Move, Wait, Enter}
 
-    //ACTION LIST
-    public enum RobotInterfaceActions {Call, Diagnose}
+    //ROBOT TAG LIST
+    public enum RobotButtonGroup {None, Drone1, Drone2, Drone3}
 }

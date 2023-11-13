@@ -1,35 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class InteractibleObject : MonoBehaviour
 {
-    public float interactRadius = 2.5f;
+    //ACTIVE FLAG
+    public bool isActive = true;
+    //REFERENCES
     private GameObject clickIndicator;
-    private Animator interactIndicatorAnim;
-    
+    private Animator clickIndicatorAnim;
+    //PROPERTIES
+    public float interactRadius = 2.5f;
+
+    public void ActivateObject()
+    {
+        isActive = true;
+        clickIndicator.SetActive(true);
+    }
+    //UNITY FUNCTIONS
     void OnMouseEnter()
     {
         if(!EventSystem.current.IsPointerOverGameObject())
-            interactIndicatorAnim.SetBool("mouseover", true);
+            clickIndicatorAnim.SetBool("mouseover", true);
         
     }
     void OnMouseExit()
     {
         if(!EventSystem.current.IsPointerOverGameObject())
-            interactIndicatorAnim.SetBool("mouseover", false);
+            clickIndicatorAnim.SetBool("mouseover", false);
     }
     void OnMouseDown()
     {
         if(!EventSystem.current.IsPointerOverGameObject())
             PlayerController.Instance.QueueInteraction(gameObject, interactRadius);
     }
-
+    
     void Start()
     {
         clickIndicator = Instantiate(UIManager.Instance.clickIndicatorPrefab, UIManager.Instance.clickIndicators);
-        interactIndicatorAnim = clickIndicator.GetComponent<Animator>();
+        clickIndicatorAnim = clickIndicator.GetComponent<Animator>();
+        if(isActive == false)
+            clickIndicator.SetActive(false);
     }
 
     void Update()
