@@ -279,6 +279,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 344652727}
     m_Modifications:
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: roboTag
+      value: Drone2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: buttonGroup
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: robotTarget
+      value: 
+      objectReference: {fileID: 1942132513}
+    - target: {fileID: 1419875526635002442, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: isActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2564981538238622278, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
       propertyPath: m_Name
       value: Drone Placeholder (2)
@@ -580,6 +596,11 @@ BoxCollider:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2c2929b1fb940ca4c8117f41f8d9f493, type: 3}
   m_PrefabInstance: {fileID: 969288648}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &255458780 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 211756044280315660, guid: 001a090185853ea41a255a6904f26ac0, type: 3}
+  m_PrefabInstance: {fileID: 344971882}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &262665672
 PrefabInstance:
@@ -1400,8 +1421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c8e69327a2156459f07fdafe48623e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickIndicatorPrefab: {fileID: 0}
-  clickIndicators: {fileID: 0}
+  clickIndicatorPrefab: {fileID: 4306566371191719161, guid: d13d98963d0c6714098ec6ec8acec448, type: 3}
+  clickIndicators: {fileID: 255458780}
   sideMenu: {fileID: 1670003117}
   commandButtons: []
 --- !u!1001 &417400522
@@ -1876,8 +1897,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 344652727}
     m_Modifications:
     - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: roboTag
+      value: Drone3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: buttonGroup
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
       propertyPath: actions.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419875526635002442, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: isActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2564981538238622278, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
       propertyPath: m_Name
@@ -3927,9 +3960,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 344652727}
     m_Modifications:
     - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: roboTag
+      value: Drone1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
       propertyPath: isActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: buttonGroup
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+      propertyPath: robotTarget
+      value: 
+      objectReference: {fileID: 1399996434}
     - target: {fileID: 2564981538238622278, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
       propertyPath: m_Name
       value: Drone Placeholder (1)
@@ -4411,6 +4456,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 665223e590b97d242805fe6963a1f1ec, type: 3}
+--- !u!114 &1399996434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+  m_PrefabInstance: {fileID: 49846169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac445fd6c006e594cb3a2c5a94cdee8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1449355643
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6448,6 +6504,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 675.8659, y: 630.7038, z: 29.6}
   m_Center: {x: 40.540543, y: 314.34305, z: 19.5}
+--- !u!114 &1942132513 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8510399583200248954, guid: e70e392d9c842eb489c831c0ea5e2196, type: 3}
+  m_PrefabInstance: {fileID: 624822242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac445fd6c006e594cb3a2c5a94cdee8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1959536840
 GameObject:
   m_ObjectHideFlags: 0

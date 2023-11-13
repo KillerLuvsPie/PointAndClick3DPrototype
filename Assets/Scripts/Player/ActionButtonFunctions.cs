@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionButtons : MonoBehaviour
+public class ActionButtonFunctions : MonoBehaviour
 {
-    public void CallRobot(GameObject obj)
+    public void UnlockInteractible(GameObject obj)
     {
-        GameObject instance = Instantiate(obj, GameManager.Instance.actorWrapper);
-
+        obj.GetComponent<InteractibleObject>().ActivateObject();
+        print(obj);
     }
 
     public void ActionButtonDefault()

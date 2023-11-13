@@ -9,7 +9,7 @@ public class RobotController : MonoBehaviour
     public Robot robot;
     public GameObject robotInterface;
     public RobotController robotTarget;
-    public bool isActive = false;
+    public DataVariables.RobotButtonGroup buttonGroup;
 
     void Start()
     {
