@@ -56,9 +56,11 @@ public class UIManager : MonoBehaviour
                 break;
             case DataVariables.RobotButtonGroup.Drone2:
                 commandButtons[0].onClick.AddListener(() => actionButtonFunctions.UnlockInteractible(obj));
+                commandButtons[0].GetComponent<OnHoverButton>().tooltip = "Unlock " + obj.name;
                 break;
             case DataVariables.RobotButtonGroup.Drone3:
                 commandButtons[0].onClick.AddListener(() => actionButtonFunctions.UnlockInteractible(obj));
+                commandButtons[0].GetComponent<OnHoverButton>().tooltip = "Unlock store gate";
                 break;
             default:
                 print("Invalid robot button group: " + btnGrp);
