@@ -46,6 +46,7 @@ public class NPCController : MonoBehaviour
                     break;
                 case DataVariables.ElevatorNPCState.Move:
                     yield return new WaitForSeconds(0.25f);
+                    yield return new WaitUntil(() => nma.remainingDistance <= 1);
                     yield return new WaitUntil(() => nma.velocity.magnitude <= 0);
                     nma.speed = 2;
                     while(rotate)
@@ -76,6 +77,7 @@ public class NPCController : MonoBehaviour
                     break;
                 case DataVariables.ElevatorNPCState.Enter:
                     yield return new WaitForSeconds(0.5f);
+                    yield return new WaitUntil(() => nma.remainingDistance <= 0.5f);
                     yield return new WaitUntil(() => nma.velocity.magnitude <= 0);
                     ElevatorManager.Instance.StartElevatorCoroutine(this);
                     stop = !stop;

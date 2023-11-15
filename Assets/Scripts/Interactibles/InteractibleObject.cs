@@ -53,10 +53,13 @@ public class InteractibleObject : MonoBehaviour
 
     void Update()
     {
-        clickIndicator.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + Vector3.up * 1.5f);
-        float distance = Vector3.Distance(PlayerController.Instance.transform.position, transform.position);
-        float lerp = 1 - Mathf.Clamp01((distance - minDistance)/(maxDistance - minDistance));
-        alpha.a = lerp;
-        clickIndicatorImage.color = alpha;
+        if(clickIndicator.activeSelf == true)
+        {
+            clickIndicator.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + Vector3.up * 1.5f);
+            float distance = Vector3.Distance(PlayerController.Instance.transform.position, transform.position);
+            float lerp = 1 - Mathf.Clamp01((distance - minDistance)/(maxDistance - minDistance));
+            alpha.a = lerp;
+            clickIndicatorImage.color = alpha;
+        }   
     }
 }

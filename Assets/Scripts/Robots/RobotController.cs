@@ -13,7 +13,8 @@ public class RobotController : MonoBehaviour
 
     void Start()
     {
-        robotInterface = robot.robotInterface;
+        if(robot.robotInterface != null)
+            robotInterface = robot.robotInterface;
         if(buttonGroup == DataVariables.RobotButtonGroup.None)
             Debug.Log(name + " has no button group assigned");
     }
