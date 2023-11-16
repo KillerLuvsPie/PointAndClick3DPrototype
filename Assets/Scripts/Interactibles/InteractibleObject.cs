@@ -18,7 +18,7 @@ public class InteractibleObject : MonoBehaviour
     private float minDistance = 15;
     private float maxDistance = 30;
     private Color alpha;
-
+    //FUNCTIONS
     public void ActivateObject()
     {
         isActive = true;

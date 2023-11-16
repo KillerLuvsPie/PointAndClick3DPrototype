@@ -10,6 +10,8 @@ public class RobotController : MonoBehaviour
     public GameObject robotInterface;
     public RobotController robotTarget;
     public DataVariables.RobotButtonGroup buttonGroup = DataVariables.RobotButtonGroup.None;
+    public string unlockCode;
+    private bool isHacked = false;
 
     void Start()
     {
