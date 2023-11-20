@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robotName: Camera
   placeholderImage: {fileID: 0}
-  robotInterface: {fileID: 0}
+  robotInterface: {fileID: 2994784893189274380, guid: 4371ab0cfdb8e9c4d9c0db74503e4e38, type: 3}

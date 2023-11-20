@@ -6,35 +6,43 @@ using UnityEngine;
 public class ActionButtonFunctions : MonoBehaviour
 {
     private string inputValue = "";
-    public void InsertInput(string value, TextMeshProUGUI display)
+     
+
+    public void InsertInput(string value, TextMeshProUGUI display, TextMeshProUGUI confirmDisplay)
     {
-        if(inputValue.Length < 10)
+        if(inputValue.Length < 9)
         {
             inputValue += value;
             display.text = inputValue;
+            confirmDisplay.text = "";
         }
     }
 
-    public void DeleteLastInput(TextMeshProUGUI display)
+    public void DeleteLastInput(TextMeshProUGUI display, TextMeshProUGUI confirmDisplay)
     {
         if(inputValue.Length > 0)
         {
-            inputValue = inputValue.Remove(0, inputValue.Length-1);
+            inputValue = inputValue.Remove(inputValue.Length-1);
             display.text = inputValue;
+            confirmDisplay.text = "";
         }
     }
 
-    public bool VerifyInput(string value, TextMeshProUGUI checkDisplay)
+    public void VerifyInput(string value, TextMeshProUGUI checkDisplay, bool isDrone)
     {
         if(inputValue == value)
         {
             checkDisplay.text = "^";
-            return true;
+            if(isDrone)
+                StartCoroutine(UIManager.Instance.SwitchToConnections());
+            else
+            {
+                //PUT LEVEL COMPLETE HERE
+            }
         }
         else
         {
             checkDisplay.text = "X";
-            return false;
         }  
     }
 

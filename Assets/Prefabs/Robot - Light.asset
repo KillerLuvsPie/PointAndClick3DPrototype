@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87bdce600f748c44aafd8c28a264646a, type: 3}
-  m_Name: Robot - Shockdrone
+  m_Name: Robot - Light
   m_EditorClassIdentifier: 
-  robotName: ShockDrone
+  robotName: LightPost
   placeholderImage: {fileID: 0}
-  robotInterface: {fileID: 1836799007318698108, guid: 7fc495ca23c25a348a3c3eac10cb0ba9, type: 3}
+  robotInterface: {fileID: 2994784893189274380, guid: 4371ab0cfdb8e9c4d9c0db74503e4e38, type: 3}

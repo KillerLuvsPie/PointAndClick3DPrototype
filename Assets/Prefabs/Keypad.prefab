@@ -128,8 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robot: {fileID: 11400000, guid: e875cd5e31518424b96c51faaa5cbc49, type: 2}
   robotInterface: {fileID: 0}
-  robotTarget: {fileID: 0}
-  buttonGroup: 8
+  connections: []
+  buttonGroup: 4
+  unlockCode: 
 --- !u!1 &3732030717291611544
 GameObject:
   m_ObjectHideFlags: 0

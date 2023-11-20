@@ -8,20 +8,15 @@ public class RobotController : MonoBehaviour
 {
     public Robot robot;
     public GameObject robotInterface;
-    public RobotController robotTarget;
+    public RobotController[] connections;
     public DataVariables.RobotButtonGroup buttonGroup = DataVariables.RobotButtonGroup.None;
     public string unlockCode;
     private bool isHacked = false;
 
     void Start()
     {
-        if(robot.robotInterface != null)
             robotInterface = robot.robotInterface;
         if(buttonGroup == DataVariables.RobotButtonGroup.None)
             Debug.Log(name + " has no button group assigned");
-    }
-    void Update()
-    {
-        
     }
 }

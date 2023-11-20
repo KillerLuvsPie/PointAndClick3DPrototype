@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   robotName: Keypad
   placeholderImage: {fileID: 0}
-  robotInterface: {fileID: 0}
+  robotInterface: {fileID: 7848446878216069397, guid: b2bfe2d3265e01d499fd8b0dadef77bf, type: 3}

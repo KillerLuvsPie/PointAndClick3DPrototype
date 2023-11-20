@@ -13,14 +13,23 @@ public class UIManager : MonoBehaviour
     //CLICK INDICATOR REFERENCES
     public GameObject clickIndicatorPrefab;
     public Transform clickIndicators;
+    //ICON REFERENCES
+    public Sprite garageIcon;
+    public Sprite flyingDroneIcon;
+    public Sprite shockDroneIcon;
+    public Sprite cameraIcon;
+    public Sprite lightIcon;
     //SIDE MENU VARIABLES
     public GameObject sideMenu;
     private RectTransform sideMenuRectT;
-    public TextMeshProUGUI sideMenuTooltip;
-    public Button[] commandButtons;
+    public GameObject connectionPrefab;
+    public Button[] keypadButtons;
+    public ScrollRect connectionsDisplay;
+    public Button closeSideMenuButton;
+    public TextMeshProUGUI keypadNumberDisplay;
+    public TextMeshProUGUI keypadConfirmDisplay;
 
     //FUNCTIONS
-    
     //CHECK IF SIDE MENU HAS A ROBOT INTERFACE AS A CHILD OBJECT
     public bool SideMenuHasInterface()
     {
@@ -37,35 +46,107 @@ public class UIManager : MonoBehaviour
     }
 
     //GET ACTION BUTTONS FROM NEW ROBOT INTERFACE
-    private void GetSideMenuButtons()
+    private void GetSideMenuButtons(RobotController rc)
     {
         Transform robotInterface = sideMenu.transform.GetChild(0);
         actionButtonFunctions = robotInterface.GetComponent<ActionButtonFunctions>();
-        commandButtons = robotInterface.GetComponentsInChildren<Button>();
-        sideMenuTooltip = robotInterface.GetChild(robotInterface.childCount - 1).GetComponent<TextMeshProUGUI>();
-    }
-
-    private void AssignButtonFunctions(DataVariables.RobotButtonGroup btnGrp, GameObject obj)
-    {
-        switch(btnGrp)
+        closeSideMenuButton = robotInterface.transform.GetChild(0).GetComponent<Button>();
+        closeSideMenuButton.interactable = true;
+        switch(rc.buttonGroup)
         {
-            case DataVariables.RobotButtonGroup.FlyingDrone1:
-                commandButtons[0].onClick.AddListener(() => actionButtonFunctions.UnlockInteractible(obj));
-                commandButtons[0].GetComponent<OnHoverButton>().tooltip = "Unlock " + obj.name;
-                print(commandButtons[0].onClick.GetPersistentEventCount());
+            case DataVariables.RobotButtonGroup.FlyingDrone:
+            case DataVariables.RobotButtonGroup.ShockDrone:
+                keypadButtons = robotInterface.transform.GetChild(1).GetComponentsInChildren<Button>();
+                keypadNumberDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+                keypadConfirmDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+                connectionsDisplay = robotInterface.transform.GetChild(2).GetChild(0).GetComponent<ScrollRect>();
+                for(int i = 0; i < keypadButtons.Length; i++)
+                    keypadButtons[i].interactable = true;
+                for(int i = 0; i < rc.connections.Length; i++)
+                {
+                    GameObject connection = Instantiate(connectionPrefab, connectionsDisplay.content);
+                    switch(rc.connections[i].buttonGroup)
+                    {
+                        case DataVariables.RobotButtonGroup.FlyingDrone:
+                            connection.transform.GetChild(0).GetComponent<Image>().sprite = flyingDroneIcon;
+                            break;
+                        case DataVariables.RobotButtonGroup.ShockDrone:
+                            connection.transform.GetChild(0).GetComponent<Image>().sprite = shockDroneIcon;
+                            break;
+                        case DataVariables.RobotButtonGroup.Camera:
+                            connection.transform.GetChild(0).GetComponent<Image>().sprite = cameraIcon;
+                            break;
+                        case DataVariables.RobotButtonGroup.GarageKeypad:
+                            connection.transform.GetChild(0).GetComponent<Image>().sprite = garageIcon;
+                            break;
+                        case DataVariables.RobotButtonGroup.Light:
+                            connection.transform.GetChild(0).GetComponent<Image>().sprite = lightIcon; 
+                            break;
+                        default:
+                            break;
+                    }
+                    connection.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = rc.connections[i].unlockCode;
+                    //ADD CONNECTION BETWEEN RC OBJECT AND THE LOOP OBJECT HERE
+                }
+                //CYCLE THROUGH CONNECTIONS IN ROBOT CONTROLLER
                 break;
-            case DataVariables.RobotButtonGroup.FlyingDrone2:
-                commandButtons[0].onClick.AddListener(() => actionButtonFunctions.UnlockInteractible(obj));
-                commandButtons[0].GetComponent<OnHoverButton>().tooltip = "Unlock " + obj.name;
+            case DataVariables.RobotButtonGroup.Camera:
+                keypadButtons = new Button[0];
                 break;
-            case DataVariables.RobotButtonGroup.FlyingDrone3:
-                commandButtons[0].onClick.AddListener(() => actionButtonFunctions.UnlockInteractible(obj));
-                commandButtons[0].GetComponent<OnHoverButton>().tooltip = "Unlock store gate";
+            case DataVariables.RobotButtonGroup.GarageKeypad:
+                keypadButtons = robotInterface.transform.GetChild(1).GetComponentsInChildren<Button>();
+                keypadNumberDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+                keypadConfirmDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+                for(int i = 0; i < keypadButtons.Length; i++)
+                    keypadButtons[i].interactable = true;
                 break;
             default:
-                print("Invalid robot button group: " + btnGrp);
+                print("Invalid robot button group: " + rc.buttonGroup + " on GetSideMenuButtons() function");
                 break;
         }
+    }
+
+    private void AssignButtonFunctions(RobotController rc)
+    {
+        closeSideMenuButton.onClick.AddListener(() => actionButtonFunctions.CloseMenu());
+        switch(rc.buttonGroup)
+        {
+            case DataVariables.RobotButtonGroup.FlyingDrone:
+            case DataVariables.RobotButtonGroup.ShockDrone:
+                for(int i = 0; i < keypadButtons.Length-2; i++)
+                {
+                    int cachedIndex = i;
+                    keypadButtons[i].onClick.AddListener(() => actionButtonFunctions.InsertInput(keypadButtons[cachedIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text, keypadNumberDisplay, keypadConfirmDisplay));
+                }
+                keypadButtons[keypadButtons.Length-2].onClick.AddListener(() => actionButtonFunctions.DeleteLastInput(keypadNumberDisplay, keypadConfirmDisplay));
+                keypadButtons[keypadButtons.Length-1].onClick.AddListener(() => actionButtonFunctions.VerifyInput(rc.unlockCode, keypadConfirmDisplay, true));
+                break;
+            case DataVariables.RobotButtonGroup.Camera:
+
+                break;
+            case DataVariables.RobotButtonGroup.GarageKeypad:
+                for(int i = 0; i < keypadButtons.Length-2; i++)
+                {
+                    int cachedIndex = i;
+                    keypadButtons[i].onClick.AddListener(() => actionButtonFunctions.InsertInput(keypadButtons[cachedIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text, keypadNumberDisplay, keypadConfirmDisplay));
+                }
+                keypadButtons[keypadButtons.Length-2].onClick.AddListener(() => actionButtonFunctions.DeleteLastInput(keypadNumberDisplay, keypadConfirmDisplay));
+                keypadButtons[keypadButtons.Length-1].onClick.AddListener(() => actionButtonFunctions.VerifyInput(rc.unlockCode, keypadConfirmDisplay, false));
+                break;
+            default:
+                print("Invalid robot button group: " + rc.buttonGroup + " on AssignButtonFunctions() function");
+                break;
+        }
+    }
+
+    private void DeactivateCloseButton()
+    {
+        closeSideMenuButton.interactable = false;
+    }
+    private void DeactivateButtons()
+    {
+        for(int i = 0; i < keypadButtons.Length; i++)
+            keypadButtons[i].interactable = false;
     }
 
     //COROUTINES
@@ -78,22 +159,15 @@ public class UIManager : MonoBehaviour
             sideMenuRectT.anchoredPosition += new Vector2(-2,0);
             yield return new WaitForEndOfFrame();
         }
-        GetSideMenuButtons();
-        AssignButtonFunctions(robotController.buttonGroup, robotController.robotTarget.GameObject());
-        for(int i = 0; i < commandButtons.Length; i++)
-        {
-            commandButtons[i].interactable = true;
-        }
+        GetSideMenuButtons(robotController);
+        AssignButtonFunctions(robotController);
     }
 
     //SIDE MENU SLIDE OUT ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
     public IEnumerator SideMenuSlideOut()
     {
         PlayerController.Instance.ControlToggle();
-        for(int i = 0; i < commandButtons.Length; i++)
-        {
-            commandButtons[i].interactable = false;
-        }
+        DeactivateButtons();
         while(sideMenuRectT.anchoredPosition.x < 250)
         {
             sideMenuRectT.anchoredPosition += new Vector2(2,0);
@@ -101,6 +175,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public IEnumerator SwitchToConnections()
+    {
+        yield return new WaitForSeconds(1);
+        sideMenu.transform.GetChild(0).GetChild(1).GameObject().SetActive(false);
+        sideMenu.transform.GetChild(0).GetChild(2).GameObject().SetActive(true);
+    }
     //UNITY FUNCTIONS
     void Awake()
     {

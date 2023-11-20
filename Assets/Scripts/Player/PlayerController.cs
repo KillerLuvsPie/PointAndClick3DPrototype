@@ -56,7 +56,6 @@ public class PlayerController : MonoBehaviour
                 case "Vehicle":         //VEHICLE INTERACTION
                     break;
                 case "Robot":           //ROBOT INTERACTION
-                    //FILL ACTION BUTTONS WITH FUNCTIONS HERE
                     UIManager.Instance.SideMenuReplaceInterface(obj.GetComponent<RobotController>().robotInterface);
                     StartCoroutine(UIManager.Instance.SideMenuSlideIn(obj.GetComponent<RobotController>()));
                     break;

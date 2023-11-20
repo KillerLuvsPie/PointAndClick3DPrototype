@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1309530932102800359}
   - component: {fileID: 427268913737556526}
   - component: {fileID: -5058524552087690392}
+  - component: {fileID: 8816256132401212786}
   m_Layer: 0
   m_Name: Streetlight
   m_TagString: Object
@@ -114,3 +115,20 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.002, y: 0.093, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &8816256132401212786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661078076136882738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac445fd6c006e594cb3a2c5a94cdee8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  robot: {fileID: 11400000, guid: 3d0636fe55e0f9f4291552d5921b2914, type: 2}
+  robotInterface: {fileID: 0}
+  connections: []
+  buttonGroup: 5
+  unlockCode: ----

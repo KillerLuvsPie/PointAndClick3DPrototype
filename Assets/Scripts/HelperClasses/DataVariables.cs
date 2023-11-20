@@ -9,5 +9,5 @@ public static class DataVariables
     public enum ElevatorNPCState {Idle, Spawn, Move, Wait, Enter}
 
     //ROBOT TAG LIST
-    public enum RobotButtonGroup {None, FlyingDrone1, FlyingDrone2, FlyingDrone3, FlyingDrone4, ShockDrone, Cam1, Cam2, Keypad}
+    public enum RobotButtonGroup {None, FlyingDrone, ShockDrone, Camera, GarageKeypad, Light}
 }
