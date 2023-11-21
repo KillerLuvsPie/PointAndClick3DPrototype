@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     //QUEUE A PLAYER INTERACTION (STOP CURRENT QUEUED ACTION, SET NAVMESH AGENT PARAMETERS AND THEN RUN COROUTINE)
-    public void QueueInteraction(GameObject obj, float interactRadius)
+    public void QueueInteraction(GameObject obj, float interactRadius, bool ignoreYPos)
     {
         if(isControlActive)
         {
@@ -37,7 +37,10 @@ public class PlayerController : MonoBehaviour
             //print("Coroutine stopped at interaction");
             coroutine = WalkingToObject(obj, interactRadius);
             playerAgent.stoppingDistance = interactRadius;
-            playerAgent.SetDestination(obj.transform.position);
+            if(ignoreYPos)
+                playerAgent.SetDestination(new Vector3(obj.transform.position.x, 0, obj.transform.position.z));
+            else
+                playerAgent.SetDestination(obj.transform.position);
             StartCoroutine(coroutine);
         }
     }

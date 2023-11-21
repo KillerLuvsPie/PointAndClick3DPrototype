@@ -30,6 +30,36 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI keypadConfirmDisplay;
 
     //FUNCTIONS
+    private void FillConnectionsDisplay(RobotController[] connections)
+    {
+        for(int i = 0; i < connections.Length; i++)
+        {
+            GameObject connection = Instantiate(connectionPrefab, connectionsDisplay.content);
+            switch(connections[i].buttonGroup)
+            {
+                case DataVariables.RobotButtonGroup.FlyingDrone:
+                    connection.transform.GetChild(0).GetComponent<Image>().sprite = flyingDroneIcon;
+                    break;
+                case DataVariables.RobotButtonGroup.ShockDrone:
+                    connection.transform.GetChild(0).GetComponent<Image>().sprite = shockDroneIcon;
+                    break;
+                case DataVariables.RobotButtonGroup.Camera:
+                    connection.transform.GetChild(0).GetComponent<Image>().sprite = cameraIcon;
+                    break;
+                case DataVariables.RobotButtonGroup.GarageKeypad:
+                    connection.transform.GetChild(0).GetComponent<Image>().sprite = garageIcon;
+                    break;
+                case DataVariables.RobotButtonGroup.Light:
+                    connection.transform.GetChild(0).GetComponent<Image>().sprite = lightIcon; 
+                    break;
+                default:
+                    break;
+            }
+            connection.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = connections[i].unlockCode;
+            //ADD CONNECTION LINE BETWEEN RC OBJECT AND THE LOOP OBJECT HERE
+        }
+    }
+
     //CHECK IF SIDE MENU HAS A ROBOT INTERFACE AS A CHILD OBJECT
     public bool SideMenuHasInterface()
     {
@@ -62,36 +92,12 @@ public class UIManager : MonoBehaviour
                 connectionsDisplay = robotInterface.transform.GetChild(2).GetChild(0).GetComponent<ScrollRect>();
                 for(int i = 0; i < keypadButtons.Length; i++)
                     keypadButtons[i].interactable = true;
-                for(int i = 0; i < rc.connections.Length; i++)
-                {
-                    GameObject connection = Instantiate(connectionPrefab, connectionsDisplay.content);
-                    switch(rc.connections[i].buttonGroup)
-                    {
-                        case DataVariables.RobotButtonGroup.FlyingDrone:
-                            connection.transform.GetChild(0).GetComponent<Image>().sprite = flyingDroneIcon;
-                            break;
-                        case DataVariables.RobotButtonGroup.ShockDrone:
-                            connection.transform.GetChild(0).GetComponent<Image>().sprite = shockDroneIcon;
-                            break;
-                        case DataVariables.RobotButtonGroup.Camera:
-                            connection.transform.GetChild(0).GetComponent<Image>().sprite = cameraIcon;
-                            break;
-                        case DataVariables.RobotButtonGroup.GarageKeypad:
-                            connection.transform.GetChild(0).GetComponent<Image>().sprite = garageIcon;
-                            break;
-                        case DataVariables.RobotButtonGroup.Light:
-                            connection.transform.GetChild(0).GetComponent<Image>().sprite = lightIcon; 
-                            break;
-                        default:
-                            break;
-                    }
-                    connection.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = rc.connections[i].unlockCode;
-                    //ADD CONNECTION BETWEEN RC OBJECT AND THE LOOP OBJECT HERE
-                }
-                //CYCLE THROUGH CONNECTIONS IN ROBOT CONTROLLER
+                FillConnectionsDisplay(rc.connections);
                 break;
             case DataVariables.RobotButtonGroup.Camera:
                 keypadButtons = new Button[0];
+                connectionsDisplay = robotInterface.transform.GetChild(1).GetComponent<ScrollRect>();
+                FillConnectionsDisplay(rc.connections);
                 break;
             case DataVariables.RobotButtonGroup.GarageKeypad:
                 keypadButtons = robotInterface.transform.GetChild(1).GetComponentsInChildren<Button>();
@@ -122,7 +128,6 @@ public class UIManager : MonoBehaviour
                 keypadButtons[keypadButtons.Length-1].onClick.AddListener(() => actionButtonFunctions.VerifyInput(rc.unlockCode, keypadConfirmDisplay, true));
                 break;
             case DataVariables.RobotButtonGroup.Camera:
-
                 break;
             case DataVariables.RobotButtonGroup.GarageKeypad:
                 for(int i = 0; i < keypadButtons.Length-2; i++)
@@ -156,9 +161,10 @@ public class UIManager : MonoBehaviour
         PlayerController.Instance.ControlToggle();
         while(sideMenuRectT.anchoredPosition.x > -250)
         {
-            sideMenuRectT.anchoredPosition += new Vector2(-2,0);
+            sideMenuRectT.anchoredPosition += new Vector2(-500*Time.deltaTime ,0);
             yield return new WaitForEndOfFrame();
         }
+        sideMenuRectT.anchoredPosition = new Vector2(-250, 0);
         GetSideMenuButtons(robotController);
         AssignButtonFunctions(robotController);
     }
@@ -171,9 +177,10 @@ public class UIManager : MonoBehaviour
         DeactivateButtons();
         while(sideMenuRectT.anchoredPosition.x < 250)
         {
-            sideMenuRectT.anchoredPosition += new Vector2(2,0);
+            sideMenuRectT.anchoredPosition += new Vector2(500*Time.deltaTime ,0);
             yield return new WaitForEndOfFrame();
         }
+        sideMenuRectT.anchoredPosition = new Vector2(250, 0);
     }
 
     public IEnumerator SwitchToConnections()

@@ -162,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   interactRadius: 1
+  ignoreYPos: 0
 --- !u!114 &6069473094591046819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ MonoBehaviour:
   robotInterface: {fileID: 0}
   connections: []
   buttonGroup: 3
-  unlockCode: 
+  unlockCode: ----
 --- !u!1 &8613330065414130908
 GameObject:
   m_ObjectHideFlags: 0

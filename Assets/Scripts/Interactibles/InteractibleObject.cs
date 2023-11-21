@@ -15,8 +15,9 @@ public class InteractibleObject : MonoBehaviour
     private Image clickIndicatorImage;
     //PROPERTIES
     public float interactRadius = 2.5f;
-    private float minDistance = 15;
-    private float maxDistance = 30;
+    public bool ignoreYPos = false;
+    private float minAlphaDistance = 15;
+    private float maxAlphaDistance = 30;
     private Color alpha;
     //FUNCTIONS
     public void ActivateObject()
@@ -39,7 +40,7 @@ public class InteractibleObject : MonoBehaviour
     void OnMouseDown()
     {
         if(!EventSystem.current.IsPointerOverGameObject())
-            PlayerController.Instance.QueueInteraction(gameObject, interactRadius);
+            PlayerController.Instance.QueueInteraction(gameObject, interactRadius, ignoreYPos);
     }
     
     void Start()
@@ -59,7 +60,7 @@ public class InteractibleObject : MonoBehaviour
         {
             clickIndicator.transform.position = Camera.main.WorldToScreenPoint(clickIndicatorPosition.position);
             float distance = Vector3.Distance(PlayerController.Instance.transform.position, transform.position);
-            float lerp = 1 - Mathf.Clamp01((distance - minDistance)/(maxDistance - minDistance));
+            float lerp = 1 - Mathf.Clamp01((distance - minAlphaDistance)/(maxAlphaDistance - minAlphaDistance));
             alpha.a = lerp;
             clickIndicatorImage.color = alpha;
         }   
