@@ -10,7 +10,7 @@ public class InteractibleObject : MonoBehaviour
     public bool isActive = true;
     //REFERENCES
     private GameObject clickIndicator;
-    private Vector3 clickIndicatorPosition;
+    private Transform clickIndicatorPosition;
     private Animator clickIndicatorAnim;
     private Image clickIndicatorImage;
     //PROPERTIES
@@ -45,7 +45,7 @@ public class InteractibleObject : MonoBehaviour
     void Start()
     {
         clickIndicator = Instantiate(UIManager.Instance.clickIndicatorPrefab, UIManager.Instance.clickIndicators);
-        clickIndicatorPosition = transform.GetChild(0).position;
+        clickIndicatorPosition = transform.GetChild(0);
         clickIndicatorAnim = clickIndicator.GetComponent<Animator>();
         clickIndicatorImage = clickIndicator.GetComponent<Image>();
         alpha = clickIndicatorImage.color;
@@ -57,7 +57,7 @@ public class InteractibleObject : MonoBehaviour
     {
         if(clickIndicator.activeSelf == true)
         {
-            clickIndicator.transform.position = Camera.main.WorldToScreenPoint(clickIndicatorPosition);
+            clickIndicator.transform.position = Camera.main.WorldToScreenPoint(clickIndicatorPosition.position);
             float distance = Vector3.Distance(PlayerController.Instance.transform.position, transform.position);
             float lerp = 1 - Mathf.Clamp01((distance - minDistance)/(maxDistance - minDistance));
             alpha.a = lerp;

@@ -57,8 +57,8 @@ public class UIManager : MonoBehaviour
             case DataVariables.RobotButtonGroup.FlyingDrone:
             case DataVariables.RobotButtonGroup.ShockDrone:
                 keypadButtons = robotInterface.transform.GetChild(1).GetComponentsInChildren<Button>();
-                keypadNumberDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-                keypadConfirmDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+                keypadNumberDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+                keypadConfirmDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
                 connectionsDisplay = robotInterface.transform.GetChild(2).GetChild(0).GetComponent<ScrollRect>();
                 for(int i = 0; i < keypadButtons.Length; i++)
                     keypadButtons[i].interactable = true;
@@ -95,8 +95,8 @@ public class UIManager : MonoBehaviour
                 break;
             case DataVariables.RobotButtonGroup.GarageKeypad:
                 keypadButtons = robotInterface.transform.GetChild(1).GetComponentsInChildren<Button>();
-                keypadNumberDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
-                keypadConfirmDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>();
+                keypadNumberDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
+                keypadConfirmDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
                 for(int i = 0; i < keypadButtons.Length; i++)
                     keypadButtons[i].interactable = true;
                 break;
@@ -167,6 +167,7 @@ public class UIManager : MonoBehaviour
     public IEnumerator SideMenuSlideOut()
     {
         PlayerController.Instance.ControlToggle();
+        DeactivateCloseButton();
         DeactivateButtons();
         while(sideMenuRectT.anchoredPosition.x < 250)
         {
@@ -177,6 +178,7 @@ public class UIManager : MonoBehaviour
 
     public IEnumerator SwitchToConnections()
     {
+        DeactivateButtons();
         yield return new WaitForSeconds(1);
         sideMenu.transform.GetChild(0).GetChild(1).GameObject().SetActive(false);
         sideMenu.transform.GetChild(0).GetChild(2).GameObject().SetActive(true);
