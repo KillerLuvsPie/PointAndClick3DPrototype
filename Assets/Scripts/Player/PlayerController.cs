@@ -89,7 +89,12 @@ public class PlayerController : MonoBehaviour
         InteractionTypeSelection(obj);
     }
 
-    //ENGINE FUNCTIONS
+    //UNITY FUNCTIONS
+    void OnTriggerEnter(Collider col)
+    {
+        if(col.CompareTag("Finish"))
+            print("LEVEL COMPLETE");
+    }
     void Awake()
     {
         //SET SINGLETON

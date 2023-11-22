@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ActionButtonFunctions : MonoBehaviour
 {
+    //VARIABLES
     private string inputValue = "";
      
-
+    //FUNCTIONS
+    //ACTION BUTTON FUNCTIONS
     public void InsertInput(string value, TextMeshProUGUI display, TextMeshProUGUI confirmDisplay)
     {
         if(inputValue.Length < 9)
@@ -33,12 +36,12 @@ public class ActionButtonFunctions : MonoBehaviour
         if(inputValue == value)
         {
             checkDisplay.text = "^";
+            //SWITCH SIDE MENU FROM KEYPAD TO CONNECTIONS DISPLAY (IF IT'S A DRONE)
             if(isDrone)
                 StartCoroutine(UIManager.Instance.SwitchToConnections());
+            //OPEN STORE SHUTTERS (IF IT'S NOT A DRONE)
             else
-            {
-                //PUT LEVEL COMPLETE HERE
-            }
+                GameManager.Instance.OpenStore();
         }
         else
         {

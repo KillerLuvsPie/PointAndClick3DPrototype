@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -30,7 +31,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI keypadConfirmDisplay;
 
     //FUNCTIONS
-    private void FillConnectionsDisplay(RobotController[] connections)
+    private void FillConnectionsDisplay(RobotController[] connections, Vector3 startPos)
     {
         for(int i = 0; i < connections.Length; i++)
         {
@@ -56,6 +57,15 @@ public class UIManager : MonoBehaviour
                     break;
             }
             connection.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = connections[i].unlockCode;
+            EventTrigger.Entry entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerEnter;
+            int cachedI = i;
+            entry.callback.AddListener((data) => {connection.GetComponent<ConnectionController>().SetLine(startPos, connections[cachedI].transform.position);});
+            connection.GetComponent<EventTrigger>().triggers.Add(entry);
+            entry = new EventTrigger.Entry();
+            entry.eventID = EventTriggerType.PointerExit;
+            entry.callback.AddListener((data) => {connection.GetComponent<ConnectionController>().DeactivateLine();});
+            connection.GetComponent<EventTrigger>().triggers.Add(entry);
             //ADD CONNECTION LINE BETWEEN RC OBJECT AND THE LOOP OBJECT HERE
         }
     }
@@ -92,12 +102,12 @@ public class UIManager : MonoBehaviour
                 connectionsDisplay = robotInterface.transform.GetChild(2).GetChild(0).GetComponent<ScrollRect>();
                 for(int i = 0; i < keypadButtons.Length; i++)
                     keypadButtons[i].interactable = true;
-                FillConnectionsDisplay(rc.connections);
+                FillConnectionsDisplay(rc.connections, rc.transform.position);
                 break;
             case DataVariables.RobotButtonGroup.Camera:
                 keypadButtons = new Button[0];
                 connectionsDisplay = robotInterface.transform.GetChild(1).GetComponent<ScrollRect>();
-                FillConnectionsDisplay(rc.connections);
+                FillConnectionsDisplay(rc.connections, rc.transform.position);
                 break;
             case DataVariables.RobotButtonGroup.GarageKeypad:
                 keypadButtons = robotInterface.transform.GetChild(1).GetComponentsInChildren<Button>();
