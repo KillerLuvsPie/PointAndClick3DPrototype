@@ -136,6 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 1
   interactRadius: 2.5
+  ignoreYPos: 0
 --- !u!114 &1245851479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +154,7 @@ MonoBehaviour:
   connections: []
   buttonGroup: 1
   unlockCode: 
+  isHacked: 0
 --- !u!1 &3928721895003169664
 GameObject:
   m_ObjectHideFlags: 0

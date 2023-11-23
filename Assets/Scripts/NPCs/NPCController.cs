@@ -12,6 +12,7 @@ public class NPCController : MonoBehaviour
     private NavMeshAgent nma;
     public int queuePosition;
     private float rotationYSpeed = 85;
+    private Animator npcAnimator;
 
     public void MoveTo(Vector3 position)
     {
@@ -91,6 +92,7 @@ public class NPCController : MonoBehaviour
 
     void Start()
     {
+        npcAnimator = GetComponent<Animator>();
         if(isRoaming)
         {
             nma = GetComponent<NavMeshAgent>();
@@ -99,6 +101,16 @@ public class NPCController : MonoBehaviour
             StartCoroutine(ProcessAction());
         }
         else
+        {
             state = DataVariables.ElevatorNPCState.Idle;
+            npcAnimator.SetFloat("Movement", 0);
+        }
+            
+    }
+
+    void Update()
+    {
+        if(isRoaming)
+            npcAnimator.SetFloat("Movement", nma.velocity.magnitude);
     }
 }

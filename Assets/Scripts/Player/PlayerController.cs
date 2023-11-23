@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     //NAVMESHAGENT
     public NavMeshAgent playerAgent;
     private float moveStopRadius = 0;
+    //ANIMATOR
+    private Animator playerAnimator;
     //COROUTINE
     private IEnumerator coroutine;
     private bool interactionQueued = false;
@@ -104,6 +106,7 @@ public class PlayerController : MonoBehaviour
             Instance = this;
 
         playerAgent = GetComponent<NavMeshAgent>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -125,12 +128,13 @@ public class PlayerController : MonoBehaviour
                 }
             }  
         }
+        playerAnimator.SetFloat("Movement", Mathf.Clamp01( playerAgent.velocity.magnitude/playerAgent.speed));
         //CHECK IF PLAYER IS MOVING - MOCK ANIMATOR
-        if(playerAgent.velocity == Vector3.zero)
+        /*if(playerAgent.velocity == Vector3.zero)
             mat.color = new Color(0,1,0,1);
         else
         {
             mat.color = new Color(playerAgent.velocity.magnitude/playerAgent.speed,1,0,1);
-        }
+        }*/
     }
 }
