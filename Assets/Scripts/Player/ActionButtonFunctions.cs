@@ -31,14 +31,17 @@ public class ActionButtonFunctions : MonoBehaviour
         }
     }
 
-    public void VerifyInput(string value, TextMeshProUGUI checkDisplay, bool isDrone)
+    public void VerifyInput(RobotController rc, TextMeshProUGUI checkDisplay, bool isDrone)
     {
-        if(inputValue == value)
+        if(inputValue == rc.unlockCode)
         {
             checkDisplay.text = "^";
             //SWITCH SIDE MENU FROM KEYPAD TO CONNECTIONS DISPLAY (IF IT'S A DRONE)
             if(isDrone)
+            {
                 StartCoroutine(UIManager.Instance.SwitchToConnections());
+                rc.isHacked = true;
+            }
             //OPEN STORE SHUTTERS (IF IT'S NOT A DRONE)
             else
                 GameManager.Instance.OpenStore();

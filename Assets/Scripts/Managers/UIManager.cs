@@ -91,7 +91,6 @@ public class UIManager : MonoBehaviour
         Transform robotInterface = sideMenu.transform.GetChild(0);
         actionButtonFunctions = robotInterface.GetComponent<ActionButtonFunctions>();
         closeSideMenuButton = robotInterface.transform.GetChild(0).GetComponent<Button>();
-        closeSideMenuButton.interactable = true;
         switch(rc.buttonGroup)
         {
             case DataVariables.RobotButtonGroup.FlyingDrone:
@@ -100,8 +99,6 @@ public class UIManager : MonoBehaviour
                 keypadNumberDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>();
                 keypadConfirmDisplay = robotInterface.transform.GetChild(1).GetChild(0).GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
                 connectionsDisplay = robotInterface.transform.GetChild(2).GetChild(0).GetComponent<ScrollRect>();
-                for(int i = 0; i < keypadButtons.Length; i++)
-                    keypadButtons[i].interactable = true;
                 FillConnectionsDisplay(rc.connections, rc.transform.position);
                 break;
             case DataVariables.RobotButtonGroup.Camera:
@@ -125,6 +122,7 @@ public class UIManager : MonoBehaviour
     private void AssignButtonFunctions(RobotController rc)
     {
         closeSideMenuButton.onClick.AddListener(() => actionButtonFunctions.CloseMenu());
+        closeSideMenuButton.interactable = true;
         switch(rc.buttonGroup)
         {
             case DataVariables.RobotButtonGroup.FlyingDrone:
@@ -135,7 +133,9 @@ public class UIManager : MonoBehaviour
                     keypadButtons[i].onClick.AddListener(() => actionButtonFunctions.InsertInput(keypadButtons[cachedIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text, keypadNumberDisplay, keypadConfirmDisplay));
                 }
                 keypadButtons[keypadButtons.Length-2].onClick.AddListener(() => actionButtonFunctions.DeleteLastInput(keypadNumberDisplay, keypadConfirmDisplay));
-                keypadButtons[keypadButtons.Length-1].onClick.AddListener(() => actionButtonFunctions.VerifyInput(rc.unlockCode, keypadConfirmDisplay, true));
+                keypadButtons[keypadButtons.Length-1].onClick.AddListener(() => actionButtonFunctions.VerifyInput(rc, keypadConfirmDisplay, true));
+                for(int i = 0; i < keypadButtons.Length; i++)
+                    keypadButtons[i].interactable = true;
                 break;
             case DataVariables.RobotButtonGroup.Camera:
                 break;
@@ -146,7 +146,9 @@ public class UIManager : MonoBehaviour
                     keypadButtons[i].onClick.AddListener(() => actionButtonFunctions.InsertInput(keypadButtons[cachedIndex].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text, keypadNumberDisplay, keypadConfirmDisplay));
                 }
                 keypadButtons[keypadButtons.Length-2].onClick.AddListener(() => actionButtonFunctions.DeleteLastInput(keypadNumberDisplay, keypadConfirmDisplay));
-                keypadButtons[keypadButtons.Length-1].onClick.AddListener(() => actionButtonFunctions.VerifyInput(rc.unlockCode, keypadConfirmDisplay, false));
+                keypadButtons[keypadButtons.Length-1].onClick.AddListener(() => actionButtonFunctions.VerifyInput(rc, keypadConfirmDisplay, false));
+                for(int i = 0; i < keypadButtons.Length; i++)
+                    keypadButtons[i].interactable = true;
                 break;
             default:
                 print("Invalid robot button group: " + rc.buttonGroup + " on AssignButtonFunctions() function");
@@ -168,14 +170,17 @@ public class UIManager : MonoBehaviour
     //SIDE MENU SLIDE IN ANIMATION (MIGHT BE REPLACED WITH AN ANIMATOR COMPONENT)
     public IEnumerator SideMenuSlideIn(RobotController robotController)
     {
+        yield return new WaitForEndOfFrame();
         PlayerController.Instance.ControlToggle();
+        GetSideMenuButtons(robotController);
+        if(robotController.isHacked)
+            ShowConnections();
         while(sideMenuRectT.anchoredPosition.x > -250)
         {
             sideMenuRectT.anchoredPosition += new Vector2(-500*Time.deltaTime ,0);
             yield return new WaitForEndOfFrame();
         }
         sideMenuRectT.anchoredPosition = new Vector2(-250, 0);
-        GetSideMenuButtons(robotController);
         AssignButtonFunctions(robotController);
     }
 
@@ -193,12 +198,16 @@ public class UIManager : MonoBehaviour
         sideMenuRectT.anchoredPosition = new Vector2(250, 0);
     }
 
+    private void ShowConnections()
+    {
+        sideMenu.transform.GetChild(0).GetChild(1).GameObject().SetActive(false);
+        sideMenu.transform.GetChild(0).GetChild(2).GameObject().SetActive(true);
+    }
     public IEnumerator SwitchToConnections()
     {
         DeactivateButtons();
         yield return new WaitForSeconds(1);
-        sideMenu.transform.GetChild(0).GetChild(1).GameObject().SetActive(false);
-        sideMenu.transform.GetChild(0).GetChild(2).GameObject().SetActive(true);
+        ShowConnections();
     }
     //UNITY FUNCTIONS
     void Awake()

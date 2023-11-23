@@ -11,7 +11,7 @@ public class RobotController : MonoBehaviour
     public RobotController[] connections;
     public DataVariables.RobotButtonGroup buttonGroup = DataVariables.RobotButtonGroup.None;
     public string unlockCode;
-    private bool isHacked = false;
+    public bool isHacked = false;
 
     void Start()
     {
