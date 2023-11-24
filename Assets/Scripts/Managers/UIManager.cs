@@ -10,7 +10,10 @@ public class UIManager : MonoBehaviour
 {
     //SINGLETON
     public static UIManager Instance;
+
     private ActionButtonFunctions actionButtonFunctions;
+    public Animator blackScreenAnim;
+
     //CLICK INDICATOR REFERENCES
     public GameObject clickIndicatorPrefab;
     public Transform clickIndicators;
@@ -177,7 +180,7 @@ public class UIManager : MonoBehaviour
             ShowConnections();
         while(sideMenuRectT.anchoredPosition.x > -250)
         {
-            sideMenuRectT.anchoredPosition += new Vector2(-500*Time.deltaTime ,0);
+            sideMenuRectT.anchoredPosition += new Vector2(-500 * Time.deltaTime * 2, 0);
             yield return new WaitForEndOfFrame();
         }
         sideMenuRectT.anchoredPosition = new Vector2(-250, 0);
@@ -192,7 +195,7 @@ public class UIManager : MonoBehaviour
         DeactivateButtons();
         while(sideMenuRectT.anchoredPosition.x < 250)
         {
-            sideMenuRectT.anchoredPosition += new Vector2(500*Time.deltaTime ,0);
+            sideMenuRectT.anchoredPosition += new Vector2(500 * Time.deltaTime * 2, 0);
             yield return new WaitForEndOfFrame();
         }
         sideMenuRectT.anchoredPosition = new Vector2(250, 0);
@@ -203,12 +206,14 @@ public class UIManager : MonoBehaviour
         sideMenu.transform.GetChild(0).GetChild(1).GameObject().SetActive(false);
         sideMenu.transform.GetChild(0).GetChild(2).GameObject().SetActive(true);
     }
+    
     public IEnumerator SwitchToConnections()
     {
         DeactivateButtons();
         yield return new WaitForSeconds(1);
         ShowConnections();
     }
+
     //UNITY FUNCTIONS
     void Awake()
     {

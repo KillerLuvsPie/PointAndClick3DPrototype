@@ -111,6 +111,6 @@ public class NPCController : MonoBehaviour
     void Update()
     {
         if(isRoaming)
-            npcAnimator.SetFloat("Movement", nma.velocity.magnitude);
+            npcAnimator.SetFloat("Movement",  Mathf.Clamp01( nma.velocity.magnitude/nma.speed));
     }
 }

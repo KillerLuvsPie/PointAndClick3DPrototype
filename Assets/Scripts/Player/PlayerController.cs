@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         if(col.CompareTag("Finish"))
-            print("LEVEL COMPLETE");
+            StartCoroutine(GameManager.Instance.ResetLevel());
     }
     void Awake()
     {
