@@ -8,7 +8,7 @@ public class ActionButtonFunctions : MonoBehaviour
 {
     //VARIABLES
     private string inputValue = "";
-     
+
     //FUNCTIONS
     //ACTION BUTTON FUNCTIONS
     public void InsertInput(string value, TextMeshProUGUI display, TextMeshProUGUI confirmDisplay)
@@ -18,7 +18,10 @@ public class ActionButtonFunctions : MonoBehaviour
             inputValue += value;
             display.text = inputValue;
             confirmDisplay.text = "";
+            StartCoroutine(PlayInputSounds(SoundManager.Instance.sfx_keypadHit));
         }
+        else
+            StartCoroutine(PlayInputSounds(SoundManager.Instance.sfx_keypadWrong));
     }
 
     public void DeleteLastInput(TextMeshProUGUI display, TextMeshProUGUI confirmDisplay)
@@ -28,13 +31,17 @@ public class ActionButtonFunctions : MonoBehaviour
             inputValue = inputValue.Remove(inputValue.Length-1);
             display.text = inputValue;
             confirmDisplay.text = "";
+            StartCoroutine(PlayInputSounds(SoundManager.Instance.sfx_keypadHit));
         }
+        else
+            StartCoroutine(PlayInputSounds(SoundManager.Instance.sfx_keypadWrong));
     }
 
     public void VerifyInput(RobotController rc, TextMeshProUGUI checkDisplay, bool isDrone)
     {
         if(inputValue == rc.unlockCode)
         {
+            StartCoroutine(PlayInputSounds(SoundManager.Instance.sfx_keypadCorrect));
             checkDisplay.text = "^";
             //SWITCH SIDE MENU FROM KEYPAD TO CONNECTIONS DISPLAY (IF IT'S A DRONE)
             if(isDrone)
@@ -48,6 +55,7 @@ public class ActionButtonFunctions : MonoBehaviour
         }
         else
         {
+            StartCoroutine(PlayInputSounds(SoundManager.Instance.sfx_keypadWrong));
             checkDisplay.text = "X";
         }  
     }
@@ -70,5 +78,15 @@ public class ActionButtonFunctions : MonoBehaviour
     public void CloseMenu()
     {
         StartCoroutine(UIManager.Instance.SideMenuSlideOut());
+    }
+
+    private IEnumerator PlayInputSounds(AudioClip clip)
+    {
+        SoundManager.Instance.PlayOneSound(SoundManager.Instance.sfx_keypadButtons[Random.Range(0, SoundManager.Instance.sfx_keypadButtons.Length)], SoundManager.Instance.audioSource);
+        if(clip != null)
+        {
+            yield return new WaitForSeconds(0.2f);
+            SoundManager.Instance.PlayOneSound(clip, SoundManager.Instance.audioSource);
+        }
     }
 }
