@@ -418,6 +418,161 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb4e418062f848a468bff2afc3c9e194, type: 3}
+--- !u!1 &196164816
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196164817}
+  - component: {fileID: 196164819}
+  - component: {fileID: 196164818}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &196164817
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196164816}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 300658242}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &196164818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196164816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3322151a01e2beb48b2585ae4ee55cdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  sfx_keypadButtons:
+  - {fileID: 8300000, guid: 13ab2ea0e8f2af543a094225974eacb8, type: 3}
+  - {fileID: 8300000, guid: 362bbee137696d04f9b68066feebded7, type: 3}
+  - {fileID: 8300000, guid: 4d18138b7f5fd6b40abd9bde2167bd19, type: 3}
+  - {fileID: 8300000, guid: 75b09a2a23e16324abf5d05628d022fa, type: 3}
+  sfx_keypadHit: {fileID: 8300000, guid: 2c4386a32ed8b97409ba685833a79cf4, type: 3}
+  sfx_keypadWrong: {fileID: 8300000, guid: 2967fe55ba9c6aa478f62f7839f84a8a, type: 3}
+  sfx_keypadCorrect: {fileID: 8300000, guid: 848690d418b6f5e4a822a01a8cf6254f, type: 3}
+  sfx_droneSounds:
+  - {fileID: 8300000, guid: 5e648c1583ed9864da8ad763c3ac039b, type: 3}
+  - {fileID: 8300000, guid: e0f6ecab853bc3042afd8619247b03b8, type: 3}
+  - {fileID: 8300000, guid: 5af83bd8e19335949b2ef43e5dec3b73, type: 3}
+  sfx_droneRotorsIdle: {fileID: 8300000, guid: 486435b386d1a90458fb0a7f9d6db541, type: 3}
+--- !u!82 &196164819
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196164816}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &238488826 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 665223e590b97d242805fe6963a1f1ec, type: 3}
@@ -685,6 +840,7 @@ Transform:
   - {fileID: 382538358}
   - {fileID: 1087224370}
   - {fileID: 1294248318}
+  - {fileID: 196164817}
   - {fileID: 1205444764}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -881,6 +1037,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3752984411326986976, guid: 001a090185853ea41a255a6904f26ac0, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4268949887673315562, guid: 001a090185853ea41a255a6904f26ac0, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -3748,7 +3908,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1119050368}
   - component: {fileID: 1119050367}
-  - component: {fileID: 1119050366}
   - component: {fileID: 1119050369}
   m_Layer: 0
   m_Name: Main Camera
@@ -3757,14 +3916,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1119050366
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1119050365}
-  m_Enabled: 1
 --- !u!20 &1119050367
 Camera:
   m_ObjectHideFlags: 0
@@ -4045,7 +4196,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 300658242}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &1205444765
 LineRenderer:

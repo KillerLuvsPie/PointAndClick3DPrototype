@@ -37,7 +37,10 @@ public class PauseController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(1))
         {
-            PauseButton();
+            if(pauseMenu.activeSelf == false)
+                PauseButton();
+            else
+                ContinueButton();
         }
     }
 }
