@@ -52,7 +52,7 @@ public class RobotController : MonoBehaviour
                 StartCoroutine(PlayRandomDroneSound());
                 break;
             case DataVariables.RobotButtonGroup.ShockDrone:
-                /*SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_shockdroneIdle, audioSource);*/
+                SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_shockdroneIdle, audioSource, audioSource.volume);
                 break;
         }
         if(buttonGroup == DataVariables.RobotButtonGroup.None)

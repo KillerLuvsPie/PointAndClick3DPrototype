@@ -7,12 +7,31 @@ public class SoundManager : MonoBehaviour
     public static SoundManager Instance;
     public AudioSource audioSource;
     //SOUND REFERENCES
+    //AMBIENT
+    public AudioClip sfx_ambient;
+
+    //KEYPAD
     public AudioClip[] sfx_keypadButtons;
     public AudioClip sfx_keypadHit;
     public AudioClip sfx_keypadWrong;
     public AudioClip sfx_keypadCorrect;
+
+    //DRONES
     public AudioClip[] sfx_droneSounds;
     public AudioClip sfx_droneRotorsIdle;
+    public AudioClip sfx_shockdroneIdle;
+    public AudioClip sfx_electricitySounds;
+
+    //ELEVATOR
+    public AudioClip sfx_elevatorSlideDoors;
+    public AudioClip sfx_elevatorCloseDoors;
+    public AudioClip sfx_elevatorOpenDoors;
+    public AudioClip sfx_elevatorStartMove;
+    public AudioClip sfx_elevatorStopMove;
+    public AudioClip sfx_elevatorMoving;
+
+    //PEOPLE
+    public AudioClip[] sfx_footsteps;
     
     //SOUND FUNCTIONS
     public void PlayConstantSound(AudioClip clip, AudioSource source, float volume = 1f)
@@ -36,5 +55,7 @@ public class SoundManager : MonoBehaviour
             Instance = this;
 
         audioSource = GetComponent<AudioSource>();
+        audioSource.clip = sfx_ambient;
+        audioSource.Play();
     }
 }

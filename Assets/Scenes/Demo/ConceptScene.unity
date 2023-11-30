@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 0}
+  sfx_ambient: {fileID: 8300000, guid: f992e1e90ea801b47b1bce2813f1e809, type: 3}
   sfx_keypadButtons:
   - {fileID: 8300000, guid: 13ab2ea0e8f2af543a094225974eacb8, type: 3}
   - {fileID: 8300000, guid: 362bbee137696d04f9b68066feebded7, type: 3}
@@ -477,6 +478,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e0f6ecab853bc3042afd8619247b03b8, type: 3}
   - {fileID: 8300000, guid: 5af83bd8e19335949b2ef43e5dec3b73, type: 3}
   sfx_droneRotorsIdle: {fileID: 8300000, guid: 486435b386d1a90458fb0a7f9d6db541, type: 3}
+  sfx_shockdroneIdle: {fileID: 8300000, guid: 716252cbac6c3d04c91ee8c009b427c3, type: 3}
+  sfx_electricitySounds: {fileID: 0}
+  sfx_elevatorSlideDoors: {fileID: 8300000, guid: caa7d4bf843efb947afbd10cf9e241f2, type: 3}
+  sfx_elevatorCloseDoors: {fileID: 8300000, guid: 85b085b71dd22404583e846c92256009, type: 3}
+  sfx_elevatorOpenDoors: {fileID: 8300000, guid: bc544fa235a4f314f8380ba7773c05bf, type: 3}
+  sfx_elevatorStartMove: {fileID: 8300000, guid: e0386051b6fd84f428de0ea9eac7b5bf, type: 3}
+  sfx_elevatorStopMove: {fileID: 8300000, guid: 6ee2a89653bc8004db12872249c4766d, type: 3}
+  sfx_elevatorMoving: {fileID: 8300000, guid: f19f55c31f6a535499dc333e3b2c3ee0, type: 3}
+  sfx_footsteps: []
 --- !u!82 &196164819
 AudioSource:
   m_ObjectHideFlags: 0
@@ -488,10 +498,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -989,6 +999,10 @@ PrefabInstance:
     - target: {fileID: 3043824377690182386, guid: c8cac1e513066484184d733876591de4, type: 3}
       propertyPath: m_Name
       value: Elevator
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294224076533996246, guid: c8cac1e513066484184d733876591de4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8cac1e513066484184d733876591de4, type: 3}
