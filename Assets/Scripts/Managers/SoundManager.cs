@@ -6,6 +6,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
     public AudioSource audioSource;
+    //LIST OF ALL PAUSABLE AUDIO SOURCES
+    public List<AudioSource> allAudioSources = new List<AudioSource>();
+
     //SOUND REFERENCES
     //AMBIENT
     public AudioClip sfx_ambient;
@@ -15,12 +18,17 @@ public class SoundManager : MonoBehaviour
     public AudioClip sfx_keypadHit;
     public AudioClip sfx_keypadWrong;
     public AudioClip sfx_keypadCorrect;
-
+    
     //DRONES
     public AudioClip[] sfx_droneSounds;
     public AudioClip sfx_droneRotorsIdle;
     public AudioClip sfx_shockdroneIdle;
     public AudioClip sfx_electricitySounds;
+
+    //GARAGE
+    public AudioClip sfx_garageStartOpen;
+    public AudioClip sfx_garageOpening;
+    public AudioClip sfx_garageStopOpen;
 
     //ELEVATOR
     public AudioClip sfx_elevatorSlideDoors;
@@ -46,6 +54,18 @@ public class SoundManager : MonoBehaviour
         source.PlayOneShot(clip, volume);
     }
 
+    public void PauseAllSounds()
+    {
+        for(int i = 0; i < allAudioSources.Count; i++)
+            allAudioSources[i].Pause();
+    }
+
+    public void UnpauseAllSounds()
+    {
+        for(int i = 0; i < allAudioSources.Count; i++)
+            allAudioSources[i].UnPause();
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -57,5 +77,10 @@ public class SoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = sfx_ambient;
         audioSource.Play();
+    }
+
+    void Start()
+    {
+        allAudioSources.Add(audioSource);
     }
 }

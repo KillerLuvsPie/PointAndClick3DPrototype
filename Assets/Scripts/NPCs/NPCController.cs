@@ -13,6 +13,7 @@ public class NPCController : MonoBehaviour
     public int queuePosition;
     private float rotationYSpeed = 85;
     private Animator npcAnimator;
+    private AudioSource audioSource;
 
     public void MoveTo(Vector3 position)
     {
@@ -24,12 +25,25 @@ public class NPCController : MonoBehaviour
     {
         transform.Rotate(rotation);
     }
+
     public void Delete()
     {
         ElevatorManager.Instance.elevatorQueue.RemoveAt(0);
         ElevatorManager.Instance.NPCQueueAdjustment();
         Destroy(gameObject);
     }
+
+    //SOUND FUNCTIONS
+    public void PlayFootstepSound()
+    {
+        SoundManager.Instance.PlayOneSound
+        (
+            SoundManager.Instance.sfx_footsteps[Random.Range(0,SoundManager.Instance.sfx_footsteps.Length)],
+            audioSource,
+            npcAnimator.GetFloat("Movement") * audioSource.volume
+        );
+    }
+
     //PROCESS FUNCTION
     private IEnumerator ProcessAction()
     {
@@ -93,6 +107,7 @@ public class NPCController : MonoBehaviour
     void Start()
     {
         npcAnimator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         if(isRoaming)
         {
             nma = GetComponent<NavMeshAgent>();
@@ -104,8 +119,8 @@ public class NPCController : MonoBehaviour
         {
             state = DataVariables.ElevatorNPCState.Idle;
             npcAnimator.SetFloat("Movement", 0);
+            SoundManager.Instance.allAudioSources.Add(audioSource);
         }
-            
     }
 
     void Update()

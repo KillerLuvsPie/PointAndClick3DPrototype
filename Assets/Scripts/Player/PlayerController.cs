@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
                     StartCoroutine(UIManager.Instance.SideMenuSlideIn(obj.GetComponent<RobotController>()));
                     break;
                 default:                //ERROR INTERACTION
-                    print("Interaction could not find the tag: " + obj.tag);
+                    print("Function InteractionTypeSelection could not find the tag: " + obj.tag);
                     break;
             }   
         }
@@ -76,6 +76,16 @@ public class PlayerController : MonoBehaviour
     public void ControlToggle()
     {
         isControlActive = !isControlActive;
+    }
+
+    public void PlayFootstepSound()
+    {
+        SoundManager.Instance.PlayOneSound
+        (
+            SoundManager.Instance.sfx_footsteps[Random.Range(0,SoundManager.Instance.sfx_footsteps.Length)],
+            SoundManager.Instance.audioSource,
+            playerAnimator.GetFloat("Movement") * 1
+        );
     }
 
     //COROUTINES

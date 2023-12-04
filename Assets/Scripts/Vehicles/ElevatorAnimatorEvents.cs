@@ -35,4 +35,9 @@ public class ElevatorAnimatorEvents : MonoBehaviour
     {
         SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_elevatorMoving, audioSource);
     }
+
+    void Start()
+    {
+        SoundManager.Instance.allAudioSources.Add(audioSource);
+    }
 }

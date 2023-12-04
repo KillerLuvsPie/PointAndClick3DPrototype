@@ -252,6 +252,8 @@ MonoBehaviour:
   buttonGroup: 1
   unlockCode: 
   isHacked: 0
+  audioSource1: {fileID: 11280943292126035}
+  audioSource2: {fileID: 0}
 --- !u!1 &3928721895003169664
 GameObject:
   m_ObjectHideFlags: 0

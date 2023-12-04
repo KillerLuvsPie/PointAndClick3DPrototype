@@ -12,11 +12,12 @@ public class RobotController : MonoBehaviour
     public bool isHacked = false;
 
     //SOUND VARIABLES
-    private AudioSource audioSource;
+    public AudioSource audioSource1;
+    public AudioSource audioSource2;
     float minSoundWaitTime = 4, maxSoundWaitTime = 15;
 
     //COROUTINES
-    //PLAY A RANDOM SOUND IN DRONE SOUNDS ARRAY
+    //PLAY A RANDOM SOUND IN DRONE SOUNDS ARRAY (FLYING DRONE ONLY)
     private IEnumerator PlayRandomDroneSound()
     {
         while(true)
@@ -37,22 +38,38 @@ public class RobotController : MonoBehaviour
                     volume = 0.9f;
                     break;
             }
-            SoundManager.Instance.PlayOneSound(SoundManager.Instance.sfx_droneSounds[i], audioSource, volume);
+            SoundManager.Instance.PlayOneSound(SoundManager.Instance.sfx_droneSounds[i], audioSource1, volume);
         }
     }
-
+    //PLAY SHOCK SOUNDS RANDOMLY FOR A RANdOM AMOUNT OF TIME (SHOCKDRONE ONLY)
+    private IEnumerator PlayShockSounds()
+    {
+        SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_electricitySounds, audioSource2);
+        audioSource2.Pause();
+        while(true)
+        {
+            yield return new WaitForSeconds(Random.Range(1f, 5f));
+            audioSource2.UnPause();
+            //PLAY SHOCK PARTICLES HERE
+            yield return new WaitForSecondsRealtime(Random.Range(0.25f, 0.75f));
+            audioSource2.Pause();
+            //STOP SHOCK PARTICLES HERE
+        }
+    }
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         robotInterface = robot.robotInterface;
         switch(buttonGroup)
         {
             case DataVariables.RobotButtonGroup.FlyingDrone:
-                SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_droneRotorsIdle, audioSource, audioSource.volume);
+                SoundManager.Instance.allAudioSources.Add(audioSource1);
+                SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_droneRotorsIdle, audioSource1, audioSource1.volume);
                 StartCoroutine(PlayRandomDroneSound());
                 break;
             case DataVariables.RobotButtonGroup.ShockDrone:
-                SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_shockdroneIdle, audioSource, audioSource.volume);
+                SoundManager.Instance.allAudioSources.Add(audioSource1);
+                SoundManager.Instance.PlayConstantSound(SoundManager.Instance.sfx_shockdroneIdle, audioSource1, audioSource1.volume);
+                StartCoroutine(PlayShockSounds());
                 break;
         }
         if(buttonGroup == DataVariables.RobotButtonGroup.None)
