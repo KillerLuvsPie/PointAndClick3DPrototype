@@ -40,6 +40,7 @@ public class SoundManager : MonoBehaviour
 
     //PEOPLE
     public AudioClip[] sfx_footsteps;
+    public AudioClip[] sfx_barks;
     
     //SOUND FUNCTIONS
     public void PlayConstantSound(AudioClip clip, AudioSource source, float volume = 1f)

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
             switch (obj.tag)
             {
                 case "NPC":             //NPC INTERACTION
+                    SoundManager.Instance.PlayOneSound(SoundManager.Instance.sfx_barks[Random.Range(0, SoundManager.Instance.sfx_barks.Length)], obj.GetComponent<AudioSource>());
                     print(obj.GetComponent<NPCController>().message);
                     break;
                 case "Interactible":    //OBJECT INTERACTION

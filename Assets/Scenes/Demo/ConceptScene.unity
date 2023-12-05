@@ -405,6 +405,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2b7ebc8d49dad66499bc9683eed7f3bc, type: 3}
   - {fileID: 8300000, guid: 9529ab1df589640439de92952f1d2037, type: 3}
   - {fileID: 8300000, guid: 2421b01ea9d20294ca2957a4c8bdfd24, type: 3}
+  sfx_barks:
+  - {fileID: 8300000, guid: ad6ffff591a62214fb4878d24220d835, type: 3}
+  - {fileID: 8300000, guid: d349bf2d34aadd040b21e5b2ebd89dc0, type: 3}
+  - {fileID: 8300000, guid: abc743d85252bf744bdfe04f4ba92d51, type: 3}
+  - {fileID: 8300000, guid: 33c8829307da6b4418c8dc35cda880df, type: 3}
 --- !u!82 &196164819
 AudioSource:
   m_ObjectHideFlags: 0
