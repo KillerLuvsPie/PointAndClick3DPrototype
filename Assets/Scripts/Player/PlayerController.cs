@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
             {
                 case "NPC":             //NPC INTERACTION
                     SoundManager.Instance.PlayOneSound(SoundManager.Instance.sfx_barks[Random.Range(0, SoundManager.Instance.sfx_barks.Length)], obj.GetComponent<AudioSource>());
+                    StartCoroutine(UIManager.Instance.Dialogue(obj.transform.position, obj.GetComponent<NPCController>().message, "soihhguifeg"));
                     print(obj.GetComponent<NPCController>().message);
                     break;
                 case "Interactible":    //OBJECT INTERACTION
@@ -72,7 +73,6 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
     //ENABLE / DISABLE CONTROLS
     public void ControlToggle()
     {

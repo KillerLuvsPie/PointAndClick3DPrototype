@@ -11,8 +11,11 @@ public class UIManager : MonoBehaviour
     //SINGLETON
     public static UIManager Instance;
 
+    private GameObject dialogueInstance;
+    public GameObject canvas;
     private ActionButtonFunctions actionButtonFunctions;
     public Animator blackScreenAnim;
+    public GameObject dialogueBaloon;
 
     //CLICK INDICATOR REFERENCES
     public GameObject clickIndicatorPrefab;
@@ -122,6 +125,19 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public IEnumerator Dialogue(Vector3 targetPos, string npcMessage, string playerMessage)
+    {
+        GameObject dialogueInstance1 = Instantiate(dialogueBaloon, canvas.transform);
+        dialogueInstance1.transform.position = Camera.main.WorldToScreenPoint(targetPos + Vector3.up * 7.5f);
+        dialogueInstance1.GetComponent<TextMeshProUGUI>().text = npcMessage;
+        yield return new WaitForSeconds(5);
+        Destroy(dialogueInstance1);
+        GameObject dialogueInstance2 = Instantiate(dialogueBaloon, canvas.transform);
+        dialogueInstance2.transform.position = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position + Vector3.up * 7.5f);
+        dialogueInstance2.GetComponent<TextMeshProUGUI>().text = playerMessage;
+        yield return new WaitForSeconds(5);
+        Destroy(dialogueInstance2);
+    }
     private void AssignButtonFunctions(RobotController rc)
     {
         closeSideMenuButton.onClick.AddListener(() => actionButtonFunctions.CloseMenu());

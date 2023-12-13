@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08563766, g: 0.13704637, b: 0.2580648, a: 1}
+  m_IndirectSpecularColor: {r: 0.08563735, g: 0.13701312, b: 0.25806305, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1532,7 +1532,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6c8e69327a2156459f07fdafe48623e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 1621874008}
   blackScreenAnim: {fileID: 344971883}
+  dialogueBaloon: {fileID: 5331941524825264239, guid: a5e5e52cb816ecd4aa437e67699a7213, type: 3}
   clickIndicatorPrefab: {fileID: 4306566371191719161, guid: d13d98963d0c6714098ec6ec8acec448, type: 3}
   clickIndicators: {fileID: 255458780}
   garageIcon: {fileID: 21300000, guid: 716785322387ba24bbe21eaa809c1d12, type: 3}
@@ -4471,6 +4473,11 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 626407665088180237, guid: c7c1446c3ce1a5f40804d30df17a7418, type: 3}
   m_PrefabInstance: {fileID: 1097694198869505048}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1621874008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4268949887673315562, guid: 001a090185853ea41a255a6904f26ac0, type: 3}
+  m_PrefabInstance: {fileID: 344971882}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1624797998 stripped
 MonoBehaviour:
