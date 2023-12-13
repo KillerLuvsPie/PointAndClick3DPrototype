@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator coroutine;
     private bool interactionQueued = false;
     //PLAYER VARIABLES
+    public string message;
     public Material mat;
     public bool isControlActive = true;
     //FUNCTIONS
@@ -55,7 +56,7 @@ public class PlayerController : MonoBehaviour
             {
                 case "NPC":             //NPC INTERACTION
                     SoundManager.Instance.PlayOneSound(SoundManager.Instance.sfx_barks[Random.Range(0, SoundManager.Instance.sfx_barks.Length)], obj.GetComponent<AudioSource>());
-                    StartCoroutine(UIManager.Instance.Dialogue(obj.transform.position, obj.GetComponent<NPCController>().message, "soihhguifeg"));
+                    StartCoroutine(UIManager.Instance.Dialogue(obj.transform.position, obj.GetComponent<NPCController>().message, message));
                     print(obj.GetComponent<NPCController>().message);
                     break;
                 case "Interactible":    //OBJECT INTERACTION

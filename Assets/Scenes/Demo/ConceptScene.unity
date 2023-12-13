@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.08563735, g: 0.13701312, b: 0.25806305, a: 1}
+  m_IndirectSpecularColor: {r: 0.08563766, g: 0.13704637, b: 0.2580648, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5287,7 +5287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1998187619076338623, guid: d9ba642d9968df04f9dd206487bdd308, type: 3}
       propertyPath: message
-      value: Spare a coin?
+      value: ?Spare a koin?
       objectReference: {fileID: 0}
     - target: {fileID: 3986760729513884820, guid: d9ba642d9968df04f9dd206487bdd308, type: 3}
       propertyPath: m_Name
@@ -6153,7 +6153,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1998187619076338623, guid: d9ba642d9968df04f9dd206487bdd308, type: 3}
       propertyPath: message
-      value: Drones can be hacked
+      value: Drones kan be aked.
       objectReference: {fileID: 0}
     - target: {fileID: 3986760729513884820, guid: d9ba642d9968df04f9dd206487bdd308, type: 3}
       propertyPath: m_Name
@@ -6620,6 +6620,10 @@ PrefabInstance:
     - target: {fileID: 2858752923324213276, guid: 9c4ebf7b935b08441beb1ca56b162267, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 22.917944
+      objectReference: {fileID: 0}
+    - target: {fileID: 3169044436459730888, guid: 9c4ebf7b935b08441beb1ca56b162267, type: 3}
+      propertyPath: message
+      value: Kant elp yu.
       objectReference: {fileID: 0}
     - target: {fileID: 3202072952327991211, guid: 9c4ebf7b935b08441beb1ca56b162267, type: 3}
       propertyPath: m_RootOrder
@@ -7126,6 +7130,14 @@ PrefabInstance:
     - target: {fileID: 5331941524825264239, guid: a5e5e52cb816ecd4aa437e67699a7213, type: 3}
       propertyPath: m_Name
       value: Dialogue Font
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247988165599919906, guid: a5e5e52cb816ecd4aa437e67699a7213, type: 3}
+      propertyPath: m_margin.y
+      value: 8.719168
+      objectReference: {fileID: 0}
+    - target: {fileID: 6247988165599919906, guid: a5e5e52cb816ecd4aa437e67699a7213, type: 3}
+      propertyPath: m_margin.z
+      value: 36.978867
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5e5e52cb816ecd4aa437e67699a7213, type: 3}

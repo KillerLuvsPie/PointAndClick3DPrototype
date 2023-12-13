@@ -128,12 +128,12 @@ public class UIManager : MonoBehaviour
     public IEnumerator Dialogue(Vector3 targetPos, string npcMessage, string playerMessage)
     {
         GameObject dialogueInstance1 = Instantiate(dialogueBaloon, canvas.transform);
-        dialogueInstance1.transform.position = Camera.main.WorldToScreenPoint(targetPos + Vector3.up * 7.5f);
+        dialogueInstance1.transform.position = Camera.main.WorldToScreenPoint(targetPos + Vector3.up * 5);
         dialogueInstance1.GetComponent<TextMeshProUGUI>().text = npcMessage;
         yield return new WaitForSeconds(5);
         Destroy(dialogueInstance1);
         GameObject dialogueInstance2 = Instantiate(dialogueBaloon, canvas.transform);
-        dialogueInstance2.transform.position = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position + Vector3.up * 7.5f);
+        dialogueInstance2.transform.position = Camera.main.WorldToScreenPoint(PlayerController.Instance.transform.position + Vector3.up * 5);
         dialogueInstance2.GetComponent<TextMeshProUGUI>().text = playerMessage;
         yield return new WaitForSeconds(5);
         Destroy(dialogueInstance2);
