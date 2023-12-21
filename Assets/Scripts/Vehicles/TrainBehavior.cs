@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrainBehavior : MonoBehaviour
 {
-    private float speed = 0.4f;
+    private float speed = 0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class TrainBehavior : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z + speed * 1);
 
-        if (gameObject.transform.position.z > 200)
+        if (gameObject.transform.position.z > 220)
         {
             Destroy(gameObject);
         }
